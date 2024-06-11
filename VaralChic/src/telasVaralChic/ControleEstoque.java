@@ -52,7 +52,7 @@ public class ControleEstoque extends javax.swing.JFrame {
                 CadastrarProduto1ActionPerformed(evt);
             }
         });
-        getContentPane().add(CadastrarProduto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 103, 36));
+        getContentPane().add(CadastrarProduto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 490, 103, 36));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Sair");
@@ -65,7 +65,7 @@ public class ControleEstoque extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Pesquisa");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 61, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
 
         Preco1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Preco1.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class ControleEstoque extends javax.swing.JFrame {
                 Preco1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Preco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 55, 500, 30));
+        getContentPane().add(Preco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 500, 30));
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,7 +102,7 @@ public class ControleEstoque extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 828, 257));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 790, 280));
 
         CadastrarProduto2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         CadastrarProduto2.setText("EXCLUIR");
@@ -111,7 +111,7 @@ public class ControleEstoque extends javax.swing.JFrame {
                 CadastrarProduto2ActionPerformed(evt);
             }
         });
-        getContentPane().add(CadastrarProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 490, 103, 36));
+        getContentPane().add(CadastrarProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 103, 36));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Controle de estoque");

@@ -54,11 +54,11 @@ public class GerencLogin extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 170, 300, 100));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 300, 100));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton6.setText("Consultar usuário");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 356, 300, 100));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 300, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));

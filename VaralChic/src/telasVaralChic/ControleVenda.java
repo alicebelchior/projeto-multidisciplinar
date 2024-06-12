@@ -35,6 +35,9 @@ public class ControleVenda extends javax.swing.JFrame {
         setTitle("CONTROLE DE VENDAS");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocation(new java.awt.Point(100, 100));
+        setMaximumSize(new java.awt.Dimension(920, 600));
+        setMinimumSize(new java.awt.Dimension(920, 600));
+        setPreferredSize(new java.awt.Dimension(920, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

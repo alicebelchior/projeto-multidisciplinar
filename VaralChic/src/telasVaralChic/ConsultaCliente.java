@@ -38,6 +38,9 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
+        setMaximumSize(new java.awt.Dimension(920, 600));
+        setMinimumSize(new java.awt.Dimension(920, 600));
+        setPreferredSize(new java.awt.Dimension(920, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

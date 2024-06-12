@@ -29,9 +29,9 @@ public class GerencLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(920, 600));
+        setMinimumSize(new java.awt.Dimension(920, 600));
+        setPreferredSize(new java.awt.Dimension(920, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -61,6 +61,9 @@ public class GerencLogin extends javax.swing.JFrame {
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 300, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
+        jLabel2.setMaximumSize(new java.awt.Dimension(920, 570));
+        jLabel2.setMinimumSize(new java.awt.Dimension(920, 570));
+        jLabel2.setPreferredSize(new java.awt.Dimension(920, 570));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();

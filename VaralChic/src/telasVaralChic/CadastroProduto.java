@@ -35,7 +35,10 @@ public class CadastroProduto extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.white);
         setLocation(new java.awt.Point(100, 100));
+        setMaximumSize(new java.awt.Dimension(920, 600));
+        setMinimumSize(new java.awt.Dimension(920, 600));
         setName("Cadastro de Produto"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(920, 600));
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

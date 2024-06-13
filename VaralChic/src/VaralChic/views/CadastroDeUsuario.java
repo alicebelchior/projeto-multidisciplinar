@@ -28,25 +28,24 @@ public class CadastroDeUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblNomeUsuario = new javax.swing.JLabel();
+        lblCpfUsuario = new javax.swing.JLabel();
+        lblRgUsuario = new javax.swing.JLabel();
+        lblEnderecoUsuario = new javax.swing.JLabel();
+        lblFoneUsuario = new javax.swing.JLabel();
+        lblEmailUsuario = new javax.swing.JLabel();
+        lblSenhaUsuario = new javax.swing.JLabel();
+        txtNomeUsuario = new javax.swing.JTextField();
+        txtCpfUsuario = new javax.swing.JTextField();
+        txtRgUsuario = new javax.swing.JTextField();
+        txtEnderecoUsuario = new javax.swing.JTextField();
+        txtFoneUsuario = new javax.swing.JTextField();
+        txtEmailUsuario = new javax.swing.JTextField();
+        pswSenhaUsuario = new javax.swing.JTextField();
+        btnSair = new javax.swing.JButton();
+        btnCadastrarUsuario = new javax.swing.JButton();
+        lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Usuários");
@@ -55,85 +54,81 @@ public class CadastroDeUsuario extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(920, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Nome");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitulo.setText("Cadastro de usuário");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("CPF");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 30, 20));
+        lblNomeUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblNomeUsuario.setText("Nome");
+        getContentPane().add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Telefone");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
+        lblCpfUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCpfUsuario.setText("CPF");
+        getContentPane().add(lblCpfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 30, 20));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Senha");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 50, 20));
+        lblRgUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblRgUsuario.setText("RG");
+        getContentPane().add(lblRgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("RG");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
+        lblEnderecoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEnderecoUsuario.setText("Endereço");
+        getContentPane().add(lblEnderecoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 20));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 500, 30));
+        lblFoneUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblFoneUsuario.setText("Telefone");
+        getContentPane().add(lblFoneUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Endereço");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 20));
+        lblEmailUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEmailUsuario.setText("E-mail");
+        getContentPane().add(lblEmailUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 50, 20));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 500, 30));
+        lblSenhaUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblSenhaUsuario.setText("Senha");
+        getContentPane().add(lblSenhaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 50, 20));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 500, 30));
+
+        txtCpfUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCpfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtCpfUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 500, 30));
+        getContentPane().add(txtCpfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 500, 30));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 500, 30));
+        txtRgUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtRgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 500, 30));
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 500, 30));
+        txtEnderecoUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtEnderecoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 500, 30));
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 500, 30));
+        txtFoneUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtFoneUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 500, 30));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setText("Cadastro de usuário");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
+        txtEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtEmailUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 500, 30));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Sair");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, -1));
+        pswSenhaUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(pswSenhaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 500, 30));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Permissões");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 140, 30));
+        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSair.setText("Sair");
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, -1));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Cadastrar");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 130, 50));
+        btnCadastrarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCadastrarUsuario.setText("Cadastrar");
+        getContentPane().add(btnCadastrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 130, 50));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("E-mail");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 50, 20));
-
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 500, 30));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
+        lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
+        getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtCpfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtCpfUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,24 +166,23 @@ public class CadastroDeUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton btnCadastrarUsuario;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JLabel lblCpfUsuario;
+    private javax.swing.JLabel lblEmailUsuario;
+    private javax.swing.JLabel lblEnderecoUsuario;
+    private javax.swing.JLabel lblFoneUsuario;
+    private javax.swing.JLabel lblLogotipo;
+    private javax.swing.JLabel lblNomeUsuario;
+    private javax.swing.JLabel lblRgUsuario;
+    private javax.swing.JLabel lblSenhaUsuario;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField pswSenhaUsuario;
+    private javax.swing.JTextField txtCpfUsuario;
+    private javax.swing.JTextField txtEmailUsuario;
+    private javax.swing.JTextField txtEnderecoUsuario;
+    private javax.swing.JTextField txtFoneUsuario;
+    private javax.swing.JTextField txtNomeUsuario;
+    private javax.swing.JTextField txtRgUsuario;
     // End of variables declaration//GEN-END:variables
 }

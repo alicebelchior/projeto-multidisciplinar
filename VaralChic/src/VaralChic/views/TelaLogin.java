@@ -55,7 +55,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+        // quando clicar no botão "Entrar" vai verificar se existe usuario e senha
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**

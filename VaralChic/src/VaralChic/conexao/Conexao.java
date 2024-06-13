@@ -1,5 +1,5 @@
 /*
-classe para conectar com o banco de dados
+classe para conectar com o banco de dados mydbvaralchic
  */
 package VaralChic.conexao;
 

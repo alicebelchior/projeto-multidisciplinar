@@ -44,9 +44,9 @@ public class CadastroDeUsuario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Usuários");
@@ -118,15 +118,15 @@ public class CadastroDeUsuario extends javax.swing.JFrame {
         jButton4.setText("Cadastrar");
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 130, 50));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("E-mail");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 50, 20));
 
         jTextField7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 500, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

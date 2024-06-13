@@ -1,18 +1,9 @@
 create database Varal_Chic;
 use Varal_Chic;
 
-create table Administrador (
-codigo_administrador int not null auto_increment primary key,
-cpf varchar(14) not null,
-nome varchar(100) not null,
-telefone varchar(20) not null,
-usuario varchar(50) not null,
-senha varchar(50) not null
-);
-
-create table Funcionario (
-codigo_funcionario int not null auto_increment primary key,
-cpf varchar(14) not null,
+create table usuario (
+codigo_usuario int not null auto_increment primary key,
+cpf_usuario varchar(14) not null,
 nome varchar(100) not null,
 telefone varchar(20) not null,
 usuario varchar(50) not null,
@@ -21,7 +12,7 @@ senha varchar(50) not null
 
 create table Cliente (
 codigo_cliente int not null auto_increment primary key,
-cpf varchar(14) not null,
+cpf_cliente varchar(14) not null,
 nome varchar(100) not null,
 rg varchar(20) not null,
 endereco varchar(255) not null,
@@ -63,4 +54,3 @@ valor decimal(10, 2) not null,
 data_registro date not null
 );
 
- 

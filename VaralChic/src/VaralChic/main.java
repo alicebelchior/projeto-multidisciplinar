@@ -1,20 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package VaralChic;
 
-/**
- *
- * @author alice
- */
+import VaralChic.views.TelaLogin;
+
 public class main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Chamar a tela login para iniciar o programa
+        TelaLogin telaLogin = new TelaLogin();
+        
+        //chamar a tela para torna-la visivel
+        telaLogin.setVisible(true);
     }
-    
+
 }

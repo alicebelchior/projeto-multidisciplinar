@@ -1,11 +1,11 @@
 package VaralChic.views;
 
-public class VendaCrediario extends javax.swing.JFrame {
+public class frmVendaCrediario extends javax.swing.JFrame {
 
     /**
      * Creates new form VendaCrediario
      */
-    public VendaCrediario() {
+    public frmVendaCrediario() {
         initComponents();
     }
 
@@ -51,7 +51,7 @@ public class VendaCrediario extends javax.swing.JFrame {
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTitulo.setText("Venda crediário");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 25, -1, -1));
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         lblPagamento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPagamento.setText("Método de Pagamento");
@@ -194,20 +194,21 @@ public class VendaCrediario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmVendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmVendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmVendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmVendaCrediario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendaCrediario().setVisible(true);
+                new frmVendaCrediario().setVisible(true);
             }
         });
     }

@@ -8,12 +8,12 @@ package VaralChic.views;
  *
  * @author alice
  */
-public class GerencProduto extends javax.swing.JFrame {
+public class frmGerencProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form GerencProduto
      */
-    public GerencProduto() {
+    public frmGerencProduto() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class GerencProduto extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JLabel();
         btnCadastroProduto = new javax.swing.JButton();
         btnConsultarEstoque = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,8 +38,8 @@ public class GerencProduto extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        txtTitulo.setText("Gerenciamento de Produto");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 18, -1, -1));
+        txtTitulo.setText("Gerenciamento de produto");
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         btnCadastroProduto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCadastroProduto.setText("Cadastro de produto");
@@ -49,7 +49,7 @@ public class GerencProduto extends javax.swing.JFrame {
                 btnCadastroProdutoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 152, 300, 100));
+        getContentPane().add(btnCadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 252, 100));
 
         btnConsultarEstoque.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnConsultarEstoque.setText("Consultar estoque");
@@ -58,34 +58,47 @@ public class GerencProduto extends javax.swing.JFrame {
                 btnConsultarEstoqueActionPerformed(evt);
             }
         });
-        getContentPane().add(btnConsultarEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 325, 300, 100));
+        getContentPane().add(btnConsultarEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 252, 100));
 
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(823, 18, -1, -1));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
-
+    //CONSULTAR PRODUTO
     private void btnConsultarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarEstoqueActionPerformed
-        // TODO add your handling code here:
+        // CHAMANDO A CONSULTA DE PRODUTO
+        frmConsultaEstoque consultaEstoque = new frmConsultaEstoque();
+        consultaEstoque.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConsultarEstoqueActionPerformed
 
+    //CADASTRAR PRODUTO
     private void btnCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutoActionPerformed
-        // TODO add your handling code here:
+        // CHAMANDO O CADASTRO DE PRODUTO
+        frmCadastroProduto cadProduto = new frmCadastroProduto();
+        cadProduto.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCadastroProdutoActionPerformed
+
+    //VOLTAR PARA A PAGINA PRINCIPAL
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,20 +117,21 @@ public class GerencProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerencProduto().setVisible(true);
+                new frmGerencProduto().setVisible(true);
             }
         });
     }
@@ -125,7 +139,7 @@ public class GerencProduto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastroProduto;
     private javax.swing.JButton btnConsultarEstoque;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables

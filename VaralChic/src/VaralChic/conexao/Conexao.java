@@ -1,5 +1,5 @@
 /*
-classe para conectar com o banco de dados mydbvaralchic
+classe para conectar com o banco de dados varal_chic
  */
 package VaralChic.conexao;
 
@@ -10,18 +10,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Conexao {
+//    public Connection conectaBD() {
+//        Connection conn = null;
+//        
+//        try {
+//            String url = "jdbc:mysql://localhost:3306/varal_chic?user=root$password=1234";
+//            conn = DriverManager.getConnection(url);
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "Erro ao conectar o banco de dados. Erro: " + e.getMessage());
+//        }
+//        return conn;
+//    }
 
-    //atributos static para a conexao e serão final = serão uma constante
-    private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/mydbvaralchic";
+    //atributos static para a conexao e serão final = serão constantes
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/varal_chic";
     private static final String USER = "root";
-    private static final String PASS = "abc1234";
+    private static final String PASS = "1234";
 
     //abrir conexão
     public static Connection getConexao() {
         try {
             Class.forName(DRIVER);
             return (Connection) DriverManager.getConnection(URL, USER, PASS);
+            
         } catch (ClassNotFoundException | SQLException ex) {
             throw new RuntimeException("Algo de errado aconteceu com a conexão com o banco, veja: " + ex);
         }
@@ -32,6 +44,7 @@ public class Conexao {
         if (conn != null) { //se estiver conectado
             try {
                 conn.close();
+                
             } catch (SQLException ex) {
                 throw new RuntimeException("Algo de errado aconteceu com o fechamento com o banco, veja: " + ex);
             }
@@ -43,6 +56,7 @@ public class Conexao {
         if (stmt != null) {
             try {
                 stmt.close();
+                
             } catch (SQLException ex) {
                 throw new RuntimeException("Algo de errado aconteceu com o fechamento com o banco, veja: " + ex);
             }
@@ -55,6 +69,7 @@ public class Conexao {
         if (rs != null) {
             try {
                 rs.close();
+                
             } catch (SQLException ex) {
                 throw new RuntimeException("Algo de errado aconteceu com o fechamento com o banco, veja: " + ex);
             }

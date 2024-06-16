@@ -1,19 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package VaralChic.views;
+
+import VaralChic.model.CadastroCliente;
+import VaralChic.model.CadastroClienteConexao;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author alice
  */
-public class CadastroCliente extends javax.swing.JFrame {
+public class frmCadastroCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroCliente
      */
-    public CadastroCliente() {
+    public frmCadastroCliente() {
         initComponents();
     }
 
@@ -29,7 +29,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane5 = new javax.swing.JTextPane();
         lblTitulo = new javax.swing.JLabel();
-        btnSair = new javax.swing.JButton();
         lblNomeCliente = new javax.swing.JLabel();
         lblCpfCliente = new javax.swing.JLabel();
         lblRgCliente = new javax.swing.JLabel();
@@ -38,13 +37,14 @@ public class CadastroCliente extends javax.swing.JFrame {
         lblEmailCliente = new javax.swing.JLabel();
         lblObs = new javax.swing.JLabel();
         txtNomeCliente = new javax.swing.JTextField();
-        txtCpfCliente = new javax.swing.JTextField();
-        txtRgCliente = new javax.swing.JTextField();
+        txtCpfCliente = new javax.swing.JFormattedTextField();
+        txtRgCliente = new javax.swing.JFormattedTextField();
         txtEnderecoCliente = new javax.swing.JTextField();
         txtFoneCliente = new javax.swing.JTextField();
         txtEmailCliente = new javax.swing.JTextField();
         txtObs = new javax.swing.JTextField();
-        btnCadastrar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         jScrollPane5.setViewportView(jTextPane5);
@@ -57,11 +57,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitulo.setText("Cadastro de cliente");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
-
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, -1, -1));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         lblNomeCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblNomeCliente.setText("Nome");
@@ -92,17 +88,20 @@ public class CadastroCliente extends javax.swing.JFrame {
         getContentPane().add(lblObs, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
 
         txtNomeCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNomeCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeClienteActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtNomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 30));
 
-        txtCpfCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        try {
+            txtCpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         getContentPane().add(txtCpfCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 200, 30));
 
-        txtRgCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        try {
+            txtRgCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.###.###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         getContentPane().add(txtRgCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 200, 30));
 
         txtEnderecoCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -117,9 +116,23 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtObs.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txtObs, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 500, 60));
 
-        btnCadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCadastrar.setText("Cadastrar");
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, 130, 50));
+        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, 130, 50));
+
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
@@ -127,10 +140,45 @@ public class CadastroCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeClienteActionPerformed
+    //VOLTAR PARA A PAGINA PRINCIPAL
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
+    //SALVAR OS DADOS DO FORMULARIO CADASTRAR
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "CadastroCliente" (pacote model)
+        CadastroCliente.nome_cliente = txtNomeCliente.getText();
+        CadastroCliente.cpf_cliente = txtCpfCliente.getText();
+        CadastroCliente.rg_cliente = txtRgCliente.getText();
+        CadastroCliente.endereco_cliente = txtEnderecoCliente.getText();
+        CadastroCliente.telefone_cliente = txtFoneCliente.getText();
+        CadastroCliente.email_cliente = txtEmailCliente.getText();
+        CadastroCliente.observacao = txtObs.getText();
+        
+        CadastroClienteConexao cadcan = new CadastroClienteConexao();
+        cadcan.InserirUsuarCliente();
+        
+        JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso");
+        
+        //LIMPANDO OS DADOS DEPOIS DE SALVAR
+        limparCampos();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    //limpar campos do cadastro
+    public void limparCampos() {
+        txtNomeCliente.setText("");
+        txtCpfCliente.setText("");
+        txtRgCliente.setText("");
+        txtEnderecoCliente.setText("");
+        txtFoneCliente.setText("");
+        txtEmailCliente.setText("");
+        txtObs.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -148,27 +196,30 @@ public class CadastroCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroCliente().setVisible(true);
+                new frmCadastroCliente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextPane jTextPane5;
     private javax.swing.JLabel lblCpfCliente;
@@ -180,12 +231,12 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblObs;
     private javax.swing.JLabel lblRgCliente;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtCpfCliente;
+    private javax.swing.JFormattedTextField txtCpfCliente;
     private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JTextField txtEnderecoCliente;
     private javax.swing.JTextField txtFoneCliente;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtObs;
-    private javax.swing.JTextField txtRgCliente;
+    private javax.swing.JFormattedTextField txtRgCliente;
     // End of variables declaration//GEN-END:variables
 }

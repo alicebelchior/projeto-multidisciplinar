@@ -10,12 +10,12 @@ package VaralChic.views;
  *
  * @author Aluno
  */
-public class ConsultaUsuario extends javax.swing.JFrame {
+public class frmConsultaUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsultaDeUsuario
      */
-    public ConsultaUsuario() {
+    public frmConsultaUsuario() {
         initComponents();
     }
 
@@ -33,9 +33,9 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         txtPesquisarUsuario = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
-        btnSair = new javax.swing.JButton();
         btnEditarUsuario = new javax.swing.JButton();
         btnDeleteUsuario = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,7 +45,7 @@ public class ConsultaUsuario extends javax.swing.JFrame {
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTitulo.setText("Consulta de usuário");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         btnPesquisarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPesquisarUsuario.setText("Pesquisar");
@@ -84,15 +84,6 @@ public class ConsultaUsuario extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 790, 280));
 
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, -1, -1));
-
         btnEditarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEditarUsuario.setText("EDITAR");
         btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +101,15 @@ public class ConsultaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeleteUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, 103, 36));
+
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
@@ -129,9 +129,9 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,21 +150,23 @@ public class ConsultaUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaUsuario().setVisible(true);
+                new frmConsultaUsuario().setVisible(true);
             }
         });
     }
@@ -173,7 +175,7 @@ public class ConsultaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteUsuario;
     private javax.swing.JButton btnEditarUsuario;
     private javax.swing.JToggleButton btnPesquisarUsuario;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JTable tblUsuario;

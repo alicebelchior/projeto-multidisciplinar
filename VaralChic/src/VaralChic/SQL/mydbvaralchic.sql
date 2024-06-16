@@ -1,16 +1,22 @@
-create database Varal_Chic;
-use Varal_Chic;
+create database varal_chic;
+use varal_chic;
+
+create table login(
+codigo_login int not null auto_increment primary key,
+usuario varchar(50) not null,
+senha varchar(50) not null
+);
 
 create table usuario (
 codigo_usuario int not null auto_increment primary key,
 cpf_usuario varchar(14) not null,
 nome varchar(100) not null,
 telefone varchar(20) not null,
-usuario varchar(50) not null,
-senha varchar(50) not null
+codigo_login int,
+foreign key (codigo_login) references login (codigo_login)
 );
 
-create table Cliente (
+create table cliente (
 codigo_cliente int not null auto_increment primary key,
 cpf_cliente varchar(14) not null,
 nome varchar(100) not null,

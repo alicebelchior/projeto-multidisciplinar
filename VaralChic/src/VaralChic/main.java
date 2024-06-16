@@ -1,6 +1,6 @@
 package VaralChic;
 
-import VaralChic.views.TelaLogin;
+import VaralChic.views.frmTelaLogin;
 
 public class main {
 
@@ -9,7 +9,7 @@ public class main {
      */
     public static void main(String[] args) {
         // Chamar a tela login para iniciar o programa
-        TelaLogin telaLogin = new TelaLogin();
+        frmTelaLogin telaLogin = new frmTelaLogin();
         
         //chamar a tela para torna-la visivel
         telaLogin.setVisible(true);

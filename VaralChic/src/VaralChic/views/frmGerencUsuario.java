@@ -1,11 +1,11 @@
 package VaralChic.views;
 
-public class GerencLogin extends javax.swing.JFrame {
+public class frmGerencUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form GerencLogin
      */
-    public GerencLogin() {
+    public frmGerencUsuario() {
         initComponents();
     }
 
@@ -22,7 +22,7 @@ public class GerencLogin extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JLabel();
         btnCadastroUsuario = new javax.swing.JButton();
         btnConsultarUsuario = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -33,8 +33,8 @@ public class GerencLogin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        txtTitulo.setText("Gerenciamento de login");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 21, -1, -1));
+        txtTitulo.setText("Gerenciamento de usuário");
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         btnCadastroUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCadastroUsuario.setText("Cadastro de usuário");
@@ -43,20 +43,25 @@ public class GerencLogin extends javax.swing.JFrame {
                 btnCadastroUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 300, 100));
+        getContentPane().add(btnCadastroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 252, 100));
 
         btnConsultarUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnConsultarUsuario.setText("Consultar usuário");
-        getContentPane().add(btnConsultarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 300, 100));
-
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnConsultarUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 21, -1, -1));
+        getContentPane().add(btnConsultarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 252, 100));
+
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         lblLogotipo.setMaximumSize(new java.awt.Dimension(920, 570));
@@ -65,15 +70,32 @@ public class GerencLogin extends javax.swing.JFrame {
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
-
+    //CADASTRAR USUARIO
     private void btnCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroUsuarioActionPerformed
-        // TODO add your handling code here:
+         // CHAMANDO O CADASTRO DE USUARIO
+         frmCadastroUsuario cadUser = new frmCadastroUsuario();
+         cadUser.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btnCadastroUsuarioActionPerformed
+
+    //VOLTAR PARA A PAGINA PRINCIPAL
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    //CONSULTAR USUARIO
+    private void btnConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarUsuarioActionPerformed
+        // CHAMANDO A CONSULTA DE USUARIO
+        frmConsultaUsuario consultaUser = new frmConsultaUsuario();
+        consultaUser.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConsultarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,20 +114,23 @@ public class GerencLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerencLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerencLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerencLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerencLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGerencUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerencLogin().setVisible(true);
+                new frmGerencUsuario().setVisible(true);
             }
         });
     }
@@ -113,7 +138,7 @@ public class GerencLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastroUsuario;
     private javax.swing.JButton btnConsultarUsuario;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel txtTitulo;

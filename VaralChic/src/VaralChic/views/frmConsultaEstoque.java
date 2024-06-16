@@ -1,11 +1,11 @@
 package VaralChic.views;
 
-public class ControleEstoque extends javax.swing.JFrame {
+public class frmConsultaEstoque extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public ControleEstoque() {
+    public frmConsultaEstoque() {
         initComponents();
     }
 
@@ -23,11 +23,11 @@ public class ControleEstoque extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JLabel();
         btnPesquisarProduto = new javax.swing.JToggleButton();
         txtPesquisarProduto = new javax.swing.JTextField();
-        btnSair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
         btnEditarProduto = new javax.swing.JButton();
         btnDeleteProduto = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -48,7 +48,7 @@ public class ControleEstoque extends javax.swing.JFrame {
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTitulo.setText("Controle de estoque");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 16, -1, -1));
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         btnPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPesquisarProduto.setText("Pesquisar");
@@ -61,15 +61,6 @@ public class ControleEstoque extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 500, 30));
-
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(822, 23, -1, -1));
 
         tblProduto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -124,15 +115,20 @@ public class ControleEstoque extends javax.swing.JFrame {
         });
         getContentPane().add(btnDeleteProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 103, 36));
 
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
+
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
         // TODO add your handling code here:
@@ -149,6 +145,10 @@ public class ControleEstoque extends javax.swing.JFrame {
     private void btnDeleteProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteProdutoActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,21 +167,35 @@ public class ControleEstoque extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ControleEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ControleEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ControleEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ControleEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ControleEstoque().setVisible(true);
+                new frmConsultaEstoque().setVisible(true);
             }
         });
     }
@@ -191,7 +205,7 @@ public class ControleEstoque extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteProduto;
     private javax.swing.JButton btnEditarProduto;
     private javax.swing.JToggleButton btnPesquisarProduto;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;

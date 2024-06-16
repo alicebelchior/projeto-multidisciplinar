@@ -1,11 +1,11 @@
 package VaralChic.views;
 
-public class CadastroProduto extends javax.swing.JFrame {
+public class frmCadastroProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form Form1
      */
-    public CadastroProduto() {
+    public frmCadastroProduto() {
         initComponents();
     }
 
@@ -25,8 +25,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         Preco = new javax.swing.JTextField();
         txtQuantEstoque = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
-        btnSair = new javax.swing.JButton();
-        btnCadastrarProduto = new javax.swing.JButton();
+        btnSalvarProduto = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -42,7 +42,7 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitulo.setText("Cadastro de produto");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         lblCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCategoria.setText("Categoria de roupa");
@@ -80,23 +80,23 @@ public class CadastroProduto extends javax.swing.JFrame {
         });
         getContentPane().add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 500, 30));
 
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSalvarProduto.setText("Salvar");
+        btnSalvarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnSalvarProdutoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 21, -1, -1));
+        getContentPane().add(btnSalvarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 130, 50));
 
-        btnCadastrarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCadastrarProduto.setText("Cadastrar");
-        btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarProdutoActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 130, 50));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
@@ -108,13 +108,9 @@ public class CadastroProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PrecoActionPerformed
 
-    private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
+    private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
-
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btnSalvarProdutoActionPerformed
 
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
         // TODO add your handling code here:
@@ -123,6 +119,10 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void txtQuantEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantEstoqueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantEstoqueActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,29 +141,31 @@ public class CadastroProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroProduto().setVisible(true);
+                new frmCadastroProduto().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Preco;
-    private javax.swing.JButton btnCadastrarProduto;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvarProduto;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel lblPreco;

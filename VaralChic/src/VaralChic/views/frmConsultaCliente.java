@@ -8,12 +8,12 @@ package VaralChic.views;
  *
  * @author alice
  */
-public class ConsultaCliente extends javax.swing.JFrame {
+public class frmConsultaCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsultaCliente
      */
-    public ConsultaCliente() {
+    public frmConsultaCliente() {
         initComponents();
     }
 
@@ -29,11 +29,11 @@ public class ConsultaCliente extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnPesquisarCliente = new javax.swing.JToggleButton();
         txtPesuisarCliente = new javax.swing.JTextField();
-        btnSair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
         btnEditarCliente = new javax.swing.JButton();
         btnDeleteCliente = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,7 +43,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitulo.setText("Consulta de cliente");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 15, -1, -1));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         btnPesquisarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPesquisarCliente.setText("Pesquisar");
@@ -61,15 +61,6 @@ public class ConsultaCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtPesuisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 124, 500, 30));
-
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 22, -1, -1));
 
         jScrollPane1.setFocusable(false);
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -115,6 +106,15 @@ public class ConsultaCliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnDeleteCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(755, 516, 103, 36));
 
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
+
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
@@ -124,10 +124,6 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private void txtPesuisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesuisarClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesuisarClienteActionPerformed
-
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
         // TODO add your handling code here:
@@ -140,6 +136,10 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,20 +158,21 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaCliente().setVisible(true);
+                new frmConsultaCliente().setVisible(true);
             }
         });
     }
@@ -180,7 +181,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteCliente;
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JToggleButton btnPesquisarCliente;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel lblTitulo;

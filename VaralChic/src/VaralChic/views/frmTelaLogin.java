@@ -1,11 +1,14 @@
 package VaralChic.views;
 
-public class TelaLogin extends javax.swing.JFrame {
+import VaralChic.model.Login;
+import VaralChic.model.LoginConexao;
+
+public class frmTelaLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form PagPrincipal
      */
-    public TelaLogin() {
+    public frmTelaLogin() {
         initComponents();
     }
 
@@ -22,7 +25,7 @@ public class TelaLogin extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         txtLogin = new javax.swing.JTextField();
-        pswSenha = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JPasswordField();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,17 +48,29 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 98, 31));
+
+        txtLogin.setToolTipText("Digite o usuário");
         getContentPane().add(txtLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 330, 32));
-        getContentPane().add(pswSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 330, 30));
+
+        txtSenha.setToolTipText("Digite a senha");
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 330, 32));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 440));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // quando clicar no botão "Entrar" vai verificar se existe usuario e senha
+        //quando clicar no botão "Entrar" vai verificar se existe usuario e senha
+        Login.usuario = txtLogin.getText();
+        Login.senha = new String(txtSenha.getPassword());
+        
+        LoginConexao lg = new LoginConexao();
+        lg.VerificarUsario();  //metodo de verificar o usuario
+        
+        this.dispose();//fecha esta janela e abre o "PaginaPrincipal
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
@@ -75,14 +90,18 @@ public class TelaLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -91,7 +110,7 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                new frmTelaLogin().setVisible(true);
             }
         });
     }
@@ -101,7 +120,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel lblSenha;
-    private javax.swing.JPasswordField pswSenha;
     private javax.swing.JTextField txtLogin;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,11 @@
 package VaralChic.views;
 
-public class ControleVenda extends javax.swing.JFrame {
+public class frmControleVenda extends javax.swing.JFrame {
 
     /**
      * Creates new form Form3
      */
-    public ControleVenda() {
+    public frmControleVenda() {
         initComponents();
     }
 
@@ -27,8 +27,8 @@ public class ControleVenda extends javax.swing.JFrame {
         txtCliente = new javax.swing.JTextField();
         txtValorTotal = new javax.swing.JTextField();
         boxPagamento = new javax.swing.JComboBox<>();
-        btnSair = new javax.swing.JButton();
         btnFecharCompra = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,7 +40,7 @@ public class ControleVenda extends javax.swing.JFrame {
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTitulo.setText("Controle de venda");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 7, -1, -1));
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         lblCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCliente.setText("Cliente");
@@ -87,7 +87,7 @@ public class ControleVenda extends javax.swing.JFrame {
         getContentPane().add(txtValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, 150, 30));
 
         boxPagamento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Crediário" }));
+        boxPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DINHEIRO", "CARTÃO DE DÉBITO", "CARTÃO DE CRÉDITO", "CREDIÁRIO" }));
         boxPagamento.setToolTipText("");
         boxPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,15 +95,6 @@ public class ControleVenda extends javax.swing.JFrame {
             }
         });
         getContentPane().add(boxPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 250, 30));
-
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(823, 14, -1, -1));
 
         btnFecharCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnFecharCompra.setText("Fechar compra");
@@ -114,6 +105,15 @@ public class ControleVenda extends javax.swing.JFrame {
         });
         getContentPane().add(btnFecharCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, 36));
 
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
+
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
@@ -123,10 +123,6 @@ public class ControleVenda extends javax.swing.JFrame {
     private void btnFecharCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFecharCompraActionPerformed
-
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
 
     private void boxPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPagamentoActionPerformed
         // TODO add your handling code here:
@@ -139,6 +135,10 @@ public class ControleVenda extends javax.swing.JFrame {
     private void txtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorTotalActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,21 +157,23 @@ public class ControleVenda extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmControleVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ControleVenda().setVisible(true);
+                new frmControleVenda().setVisible(true);
             }
         });
     }
@@ -179,7 +181,7 @@ public class ControleVenda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxPagamento;
     private javax.swing.JButton btnFecharCompra;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblLogotipo;

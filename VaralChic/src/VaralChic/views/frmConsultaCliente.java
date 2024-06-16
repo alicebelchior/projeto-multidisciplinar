@@ -28,39 +28,39 @@ public class frmConsultaCliente extends javax.swing.JFrame {
     }
 
     private Connection conn = null;
-    
+
     //MÉTODO PARA POVOAR A TABELA "tblCliente"
     //BUSCANDO DO BANCO DE DADOS
     public void povoarJTable(String sql) {
         conn = Conexao.getConexao();
-        
+
         try {
             PreparedStatement stmt = conn.prepareCall(sql);
             stmt.execute();
-            
+
             ResultSet rs = stmt.executeQuery();
-            
+
             //pegando uma biblioteca que vai criar uma classe que irá povoar a tabela
             DefaultTableModel model = (DefaultTableModel) tblCliente.getModel();
             model.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
-            
+
             while (rs.next()) {
-                model.addRow(new Object[] {
+                model.addRow(new Object[]{
                     rs.getInt("codigo_cliente"),
                     rs.getString("nome_cliente"),
                     rs.getString("cpf_cliente"),
                     rs.getString("telefone_cliente")
                 });
             }
-            
+
             //fechar a conexão
             Conexao.fecharConexao(conn, stmt, rs);
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível obter os dados do banco. Veja: " + e);
-        } 
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,13 +71,13 @@ public class frmConsultaCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        btnPesquisarCliente = new javax.swing.JToggleButton();
-        txtPesuisarCliente = new javax.swing.JTextField();
+        txtPesquisarCliente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnEditarCliente = new javax.swing.JButton();
         btnDeleteCliente = new javax.swing.JButton();
+        lblPesquisarCliente = new javax.swing.JLabel();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,12 +96,14 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         lblTitulo.setText("Consulta de cliente");
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
-        btnPesquisarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPesquisarCliente.setText("Pesquisar");
-        getContentPane().add(btnPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 100, 30));
-
-        txtPesuisarCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txtPesuisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 30));
+        txtPesquisarCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPesquisarCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtPesquisarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesquisarClienteKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 500, 30));
 
         jScrollPane1.setFocusable(false);
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -125,7 +127,7 @@ public class frmConsultaCliente extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,15 +143,34 @@ public class frmConsultaCliente extends javax.swing.JFrame {
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
         btnEditarCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEditarCliente.setText("EDITAR");
+        btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarClienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 100, 40));
 
         btnDeleteCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnDeleteCliente.setText("EXCLUIR");
+        btnDeleteCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteClienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDeleteCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 100, 40));
+
+        lblPesquisarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPesquisarCliente.setText("Digite o nome ou CPF do cliente:");
+        getContentPane().add(lblPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, 30));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
@@ -163,10 +184,41 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaCliente"
         // cria o SQL
         String sql = "SELECT * FROM cliente ORDER BY codigo_cliente DESC";
-        
+
         //chamando o método para povoar a tabela "tblCliente"
         povoarJTable(sql);
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtPesquisarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarClienteKeyTyped
+        // Pesquisa pelo nome ou cpf
+        String sql = "SELECT * FROM cliente WHERE nome_cliente LIKE '%"
+                + txtPesquisarCliente.getText()
+                + "%' OR cpf_cliente LIKE '%"
+                + txtPesquisarCliente.getText()
+                + "%'"
+                + "ORDER BY codigo_cliente DESC";
+
+        //chamando o método para povoar a tabela "tblCliente"
+        povoarJTable(sql);
+    }//GEN-LAST:event_txtPesquisarClienteKeyTyped
+
+    //VOLTAR PÁGINA PRINCIPAL
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    //EDITAR CLIENTE
+    private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarClienteActionPerformed
+
+    //EXCLUIR CLIENTE
+    private void btnDeleteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,12 +259,12 @@ public class frmConsultaCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteCliente;
     private javax.swing.JButton btnEditarCliente;
-    private javax.swing.JToggleButton btnPesquisarCliente;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;
+    private javax.swing.JLabel lblPesquisarCliente;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblCliente;
-    private javax.swing.JTextField txtPesuisarCliente;
+    private javax.swing.JTextField txtPesquisarCliente;
     // End of variables declaration//GEN-END:variables
 }

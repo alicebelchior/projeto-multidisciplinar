@@ -1,5 +1,9 @@
 package VaralChic.views;
 
+import VaralChic.model.CadastroProduto;
+import VaralChic.model.CadastroProdutoConexao;
+import javax.swing.JOptionPane;
+
 public class frmCadastroProduto extends javax.swing.JFrame {
 
     /**
@@ -22,7 +26,7 @@ public class frmCadastroProduto extends javax.swing.JFrame {
         lblCategoria = new javax.swing.JLabel();
         lblQuantiEstoque = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
-        Preco = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
         txtQuantEstoque = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
         btnSalvarProduto = new javax.swing.JButton();
@@ -56,28 +60,16 @@ public class frmCadastroProduto extends javax.swing.JFrame {
         lblPreco.setText("Preço");
         getContentPane().add(lblPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
 
-        Preco.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Preco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrecoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Preco, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 500, 30));
+        txtCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCategoria.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 500, 30));
 
+        txtQuantEstoque.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtQuantEstoque.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtQuantEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantEstoqueActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtQuantEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 500, 30));
 
+        txtPreco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPreco.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecoActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 500, 30));
 
         btnSalvarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -104,24 +96,35 @@ public class frmCadastroProduto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PrecoActionPerformed
-
+    //SALVAR OS DADOS DO FORMULARIO CADASTRAR PRODUTO
     private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
-        // TODO add your handling code here:
+        // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "CadastroProduto" (pacote model)
+        CadastroProduto.categoria = txtCategoria.getText();
+        CadastroProduto.quantidade_estoque = Integer.parseInt(txtQuantEstoque.getText());
+        CadastroProduto.preco = Float.parseFloat(txtPreco.getText());
+        
+        CadastroProdutoConexao cadprod = new CadastroProdutoConexao();
+        cadprod.InserirProduto();
+        
+        JOptionPane.showMessageDialog(null, "Produto salvo com sucesso");
+        
+        //LIMPANDO OS DADOS DEPOIS DE SALVAR
+        limparCampos();
     }//GEN-LAST:event_btnSalvarProdutoActionPerformed
 
-    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecoActionPerformed
-
-    private void txtQuantEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantEstoqueActionPerformed
-
+    //limpar campos do cadastro
+    public void limparCampos() {
+        txtCategoria.setText("");
+        txtQuantEstoque.setText("");
+        txtPreco.setText("");
+    }
+    
+    //VOLTANDO PARA A PÁGINA PRINCIPAL
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -163,7 +166,6 @@ public class frmCadastroProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Preco;
     private javax.swing.JButton btnSalvarProduto;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel lblCategoria;
@@ -171,6 +173,7 @@ public class frmCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblQuantiEstoque;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantEstoque;
     // End of variables declaration//GEN-END:variables

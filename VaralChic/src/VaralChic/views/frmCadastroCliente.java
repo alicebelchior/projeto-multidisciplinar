@@ -161,7 +161,7 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         CadastroCliente.observacao = txtObs.getText();
         
         CadastroClienteConexao cadcan = new CadastroClienteConexao();
-        cadcan.InserirUsuarCliente();
+        cadcan.InserirCliente();
         
         JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso");
         

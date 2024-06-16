@@ -1,5 +1,15 @@
 package VaralChic.views;
 
+import VaralChic.conexao.Conexao;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 public class frmConsultaProduto extends javax.swing.JFrame {
 
     /**
@@ -7,6 +17,44 @@ public class frmConsultaProduto extends javax.swing.JFrame {
      */
     public frmConsultaProduto() {
         initComponents();
+        
+        //modificar o cabeçalho da tabela
+        JTableHeader jth = tblProduto.getTableHeader();
+        jth.setFont(new Font("Tahoma", Font.BOLD, 14));
+    }
+    
+     private Connection conn = null;
+
+    //MÉTODO PARA POVOAR A TABELA "tblCliente"
+    //BUSCANDO DO BANCO DE DADOS
+    public void povoarJTable(String sql) {
+        conn = Conexao.getConexao();
+
+        try {
+            PreparedStatement stmt = conn.prepareCall(sql);
+            stmt.execute();
+
+            ResultSet rs = stmt.executeQuery();
+
+            //pegando uma biblioteca que vai criar uma classe que irá povoar a tabela
+            DefaultTableModel model = (DefaultTableModel) tblProduto.getModel();
+            model.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getInt("codigo_produto"),
+                    rs.getString("categoria"),
+                    rs.getString("quantidade_estoque"),
+                    rs.getString("preco")
+                });
+            }
+
+            //fechar a conexão
+            Conexao.fecharConexao(conn, stmt, rs);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível obter os dados do banco. Veja: " + e);
+        }
     }
 
     /**
@@ -21,7 +69,7 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Preco = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JLabel();
-        btnPesquisarProduto = new javax.swing.JToggleButton();
+        lblPesquisarProduto = new javax.swing.JLabel();
         txtPesquisarProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
@@ -44,23 +92,28 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         setTitle("CONTROLE DE ESTOQUE");
         setLocation(new java.awt.Point(100, 100));
         setMinimumSize(new java.awt.Dimension(920, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        txtTitulo.setText("Controle de estoque");
+        txtTitulo.setText("Consulta de produto");
         getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
-        btnPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPesquisarProduto.setText("Pesquisar");
-        getContentPane().add(btnPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 100, 30));
+        lblPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPesquisarProduto.setText("Digite a categoria do produto:");
+        getContentPane().add(lblPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 220, 30));
 
         txtPesquisarProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisarProdutoActionPerformed(evt);
+        txtPesquisarProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesquisarProdutoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 30));
+        getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 500, 30));
 
         tblProduto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,12 +189,12 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PrecoActionPerformed
 
-    private void txtPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisarProdutoActionPerformed
-
+    //VOLTAR PARA A PAGINA PRINCIPAL
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnDeleteProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProdutoActionPerformed
@@ -151,6 +204,27 @@ public class frmConsultaProduto extends javax.swing.JFrame {
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
+
+    //CRIAÇÃO DO SQL AO ABRIR O FORMULÁRIO
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaCliente"
+        // cria o SQL
+        String sql = "SELECT * FROM produto ORDER BY codigo_produto DESC";
+        
+        //chamando o método para povoar a tabela "tblProduto"
+        povoarJTable(sql);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txtPesquisarProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoKeyTyped
+        // Pesquisa pelo nome
+        String sql = "SELECT * FROM produto WHERE categoria LIKE '%"
+                + txtPesquisarProduto.getText()
+                + "%'"
+                + "ORDER BY codigo_produto DESC";
+        
+        //chamando o método para povoar a tabela "tblCliente"
+        povoarJTable(sql);
+    }//GEN-LAST:event_txtPesquisarProdutoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -222,11 +296,11 @@ public class frmConsultaProduto extends javax.swing.JFrame {
     private javax.swing.JTextField Preco;
     private javax.swing.JButton btnDeleteProduto;
     private javax.swing.JButton btnEditarProduto;
-    private javax.swing.JToggleButton btnPesquisarProduto;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;
+    private javax.swing.JLabel lblPesquisarProduto;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTextField txtPesquisarProduto;
     private javax.swing.JLabel txtTitulo;

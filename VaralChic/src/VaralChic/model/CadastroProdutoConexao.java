@@ -14,13 +14,12 @@ import javax.swing.JOptionPane;
 /*
 essa classe sera responsavel por conectar com o banco de dados
  */
-public class CadastroClienteConexao {
+public class CadastroProdutoConexao {
     //CREATE
-    public void InserirCliente() {
+    public void InserirProduto() {
         Connection conn = null;
 
-        String sql = "INSERT INTO cliente (nome_cliente, cpf_cliente, rg_cliente, endereco_cliente, telefone_cliente, email_cliente, observacao)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (categoria, quantidade_estoque, preco) VALUES (?, ?, ?)";
 
         //conexão com o BD
         conn = Conexao.getConexao();
@@ -29,13 +28,9 @@ public class CadastroClienteConexao {
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, CadastroCliente.nome_cliente);
-            stmt.setString(2, CadastroCliente.cpf_cliente);
-            stmt.setString(3, CadastroCliente.rg_cliente);
-            stmt.setString(4, CadastroCliente.endereco_cliente);
-            stmt.setString(5, CadastroCliente.telefone_cliente);
-            stmt.setString(6, CadastroCliente.email_cliente);
-            stmt.setString(7, CadastroCliente.observacao);
+            stmt.setString(1, CadastroProduto.categoria);
+            stmt.setString(2, String.valueOf(CadastroProduto.quantidade_estoque));
+            stmt.setString(3, String.valueOf(CadastroProduto.preco));
 
             stmt.executeUpdate();
 

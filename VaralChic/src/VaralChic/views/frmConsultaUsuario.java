@@ -33,9 +33,9 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         txtPesquisarUsuario = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
+        btnVoltar = new javax.swing.JButton();
         btnEditarUsuario = new javax.swing.JButton();
         btnDeleteUsuario = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,7 +49,7 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
 
         btnPesquisarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPesquisarUsuario.setText("Pesquisar");
-        getContentPane().add(btnPesquisarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, 30));
+        getContentPane().add(btnPesquisarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 100, 30));
 
         txtPesquisarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -77,30 +77,14 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
                 "Código", "Nome", "CPF", "Telefone"
             }
         ));
+        tblUsuario.setMaximumSize(new java.awt.Dimension(300, 200));
+        tblUsuario.setMinimumSize(new java.awt.Dimension(300, 200));
         jScrollPane1.setViewportView(tblUsuario);
         if (tblUsuario.getColumnModel().getColumnCount() > 0) {
             tblUsuario.getColumnModel().getColumn(0).setMaxWidth(200);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 790, 280));
-
-        btnEditarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEditarUsuario.setText("EDITAR");
-        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarUsuarioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 103, 36));
-
-        btnDeleteUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDeleteUsuario.setText("EXCLUIR");
-        btnDeleteUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteUsuarioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDeleteUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, 103, 36));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 785, 265));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -111,10 +95,29 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
+        btnEditarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEditarUsuario.setText("EDITAR");
+        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 100, 40));
+
+        btnDeleteUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDeleteUsuario.setText("EXCLUIR");
+        btnDeleteUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDeleteUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 100, 40));
+
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarUsuarioActionPerformed

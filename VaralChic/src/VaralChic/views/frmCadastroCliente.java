@@ -138,6 +138,7 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     //VOLTAR PARA A PAGINA PRINCIPAL

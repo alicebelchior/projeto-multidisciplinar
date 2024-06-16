@@ -1,8 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package VaralChic.views;
+
+import VaralChic.conexao.Conexao;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -15,8 +21,46 @@ public class frmConsultaCliente extends javax.swing.JFrame {
      */
     public frmConsultaCliente() {
         initComponents();
+
+        //modificar o cabeçalho da tabela
+        JTableHeader jth = tblCliente.getTableHeader();
+        jth.setFont(new Font("Tahoma", Font.BOLD, 14));
     }
 
+    private Connection conn = null;
+    
+    //MÉTODO PARA POVOAR A TABELA "tblCliente"
+    //BUSCANDO DO BANCO DE DADOS
+    public void povoarJTable(String sql) {
+        conn = Conexao.getConexao();
+        
+        try {
+            PreparedStatement stmt = conn.prepareCall(sql);
+            stmt.execute();
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            //pegando uma biblioteca que vai criar uma classe que irá povoar a tabela
+            DefaultTableModel model = (DefaultTableModel) tblCliente.getModel();
+            model.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
+            
+            while (rs.next()) {
+                model.addRow(new Object[] {
+                    rs.getInt("codigo_cliente"),
+                    rs.getString("nome_cliente"),
+                    rs.getString("cpf_cliente"),
+                    rs.getString("telefone_cliente")
+                });
+            }
+            
+            //fechar a conexão
+            Conexao.fecharConexao(conn, stmt, rs);
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível obter os dados do banco. Veja: " + e);
+        } 
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,14 +75,21 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         txtPesuisarCliente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
+        btnVoltar = new javax.swing.JButton();
         btnEditarCliente = new javax.swing.JButton();
         btnDeleteCliente = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
+        setMaximumSize(new java.awt.Dimension(920, 600));
         setMinimumSize(new java.awt.Dimension(920, 600));
+        setPreferredSize(new java.awt.Dimension(920, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -47,24 +98,15 @@ public class frmConsultaCliente extends javax.swing.JFrame {
 
         btnPesquisarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPesquisarCliente.setText("Pesquisar");
-        btnPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarClienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 124, -1, 30));
+        getContentPane().add(btnPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 100, 30));
 
         txtPesuisarCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPesuisarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesuisarClienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtPesuisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 124, 500, 30));
+        getContentPane().add(txtPesuisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 30));
 
         jScrollPane1.setFocusable(false);
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        tblCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -81,65 +123,50 @@ public class frmConsultaCliente extends javax.swing.JFrame {
             new String [] {
                 "CÓDIGO", "NOME", "CPF", "TELEFONE"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblCliente.setAutoscrolls(false);
-        tblCliente.setMinimumSize(new java.awt.Dimension(80, 80));
+        tblCliente.setMaximumSize(new java.awt.Dimension(300, 200));
+        tblCliente.setMinimumSize(new java.awt.Dimension(300, 200));
         jScrollPane1.setViewportView(tblCliente);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 172, 785, 267));
-
-        btnEditarCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEditarCliente.setText("EDITAR");
-        btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarClienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(755, 474, 103, 36));
-
-        btnDeleteCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDeleteCliente.setText("EXCLUIR");
-        btnDeleteCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteClienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDeleteCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(755, 516, 103, 36));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 785, 265));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
-            }
-        });
         getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
+
+        btnEditarCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEditarCliente.setText("EDITAR");
+        getContentPane().add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 100, 40));
+
+        btnDeleteCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDeleteCliente.setText("EXCLUIR");
+        getContentPane().add(btnDeleteCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 100, 40));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPesuisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesuisarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesuisarClienteActionPerformed
-
-    private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarClienteActionPerformed
-
-    private void btnDeleteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteClienteActionPerformed
-
-    private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarClienteActionPerformed
-
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    //CRIAÇÃO DO SQL AO ABRIR O FORMULÁRIO
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaCliente"
+        // cria o SQL
+        String sql = "SELECT * FROM cliente ORDER BY codigo_cliente DESC";
+        
+        //chamando o método para povoar a tabela "tblCliente"
+        povoarJTable(sql);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

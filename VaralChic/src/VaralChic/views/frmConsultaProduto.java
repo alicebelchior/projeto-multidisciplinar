@@ -1,11 +1,11 @@
 package VaralChic.views;
 
-public class frmConsultaEstoque extends javax.swing.JFrame {
+public class frmConsultaProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public frmConsultaEstoque() {
+    public frmConsultaProduto() {
         initComponents();
     }
 
@@ -25,9 +25,9 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
         txtPesquisarProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
+        btnVoltar = new javax.swing.JButton();
         btnEditarProduto = new javax.swing.JButton();
         btnDeleteProduto = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -52,7 +52,7 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
 
         btnPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPesquisarProduto.setText("Pesquisar");
-        getContentPane().add(btnPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 30));
+        getContentPane().add(btnPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 100, 30));
 
         txtPesquisarProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +60,7 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
                 txtPesquisarProdutoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 500, 30));
+        getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 30));
 
         tblProduto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,7 +81,8 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
             }
         ));
         tblProduto.setAutoscrolls(false);
-        tblProduto.setMinimumSize(new java.awt.Dimension(80, 80));
+        tblProduto.setMaximumSize(new java.awt.Dimension(300, 200));
+        tblProduto.setMinimumSize(new java.awt.Dimension(300, 200));
         jScrollPane1.setViewportView(tblProduto);
         if (tblProduto.getColumnModel().getColumnCount() > 0) {
             tblProduto.getColumnModel().getColumn(0).setMinWidth(150);
@@ -95,25 +96,7 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
             tblProduto.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 790, 280));
-
-        btnEditarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEditarProduto.setText("EDITAR");
-        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarProdutoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEditarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 490, 103, 36));
-
-        btnDeleteProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDeleteProduto.setText("EXCLUIR");
-        btnDeleteProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteProdutoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDeleteProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 103, 36));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 785, 265));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -124,15 +107,30 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
         });
         getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
 
+        btnEditarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEditarProduto.setText("EDITAR");
+        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProdutoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEditarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 100, 40));
+
+        btnDeleteProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDeleteProduto.setText("EXCLUIR");
+        btnDeleteProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteProdutoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDeleteProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 100, 40));
+
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     private void PrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecoActionPerformed
         // TODO add your handling code here:
@@ -142,13 +140,17 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesquisarProdutoActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     private void btnDeleteProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteProdutoActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,14 +169,30 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmConsultaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -195,7 +213,7 @@ public class frmConsultaEstoque extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmConsultaEstoque().setVisible(true);
+                new frmConsultaProduto().setVisible(true);
             }
         });
     }

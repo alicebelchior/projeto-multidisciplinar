@@ -79,7 +79,7 @@ public class frmGerencProduto extends javax.swing.JFrame {
     //CONSULTAR PRODUTO
     private void btnConsultarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarEstoqueActionPerformed
         // CHAMANDO A CONSULTA DE PRODUTO
-        frmConsultaEstoque consultaEstoque = new frmConsultaEstoque();
+        frmConsultaProduto consultaEstoque = new frmConsultaProduto();
         consultaEstoque.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConsultarEstoqueActionPerformed

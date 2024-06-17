@@ -1,5 +1,15 @@
 package VaralChic.views;
 
+import VaralChic.conexao.Conexao;
+import javax.swing.table.JTableHeader;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,8 +27,47 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
      */
     public frmConsultaUsuario() {
         initComponents();
+        
+        JTableHeader jth = tblUsuario.getTableHeader();
+        jth.setFont(new Font("Tahoma", Font.BOLD, 14));
     }
 
+    private Connection conn = null;
+    
+    //READ
+    //MÉTODO PARA POVOAR A TABELA "tblCliente"
+    //BUSCANDO DO BANCO DE DADOS
+    public void povoarJTable(String sql) {
+        conn = Conexao.getConexao();
+        
+        try {
+             PreparedStatement stmt = conn.prepareCall(sql);
+            stmt.execute();
+
+            ResultSet rs = stmt.executeQuery();
+            
+            //pegando uma biblioteca que vai criar uma classe que irá povoar a tabela
+            DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
+            model.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
+            
+             while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getInt("codigo_usuario"),
+                    rs.getString("nome"),
+                    rs.getString("cpf_usuario"),
+                    rs.getString("telefone"),
+                    rs.getString("usuario")
+                });
+            }
+             
+             //fechar a conexão
+            Conexao.fecharConexao(conn, stmt, rs);
+             
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível obter os dados do banco. Veja: " + e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,54 +78,63 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         txtTitulo = new javax.swing.JLabel();
-        btnPesquisarUsuario = new javax.swing.JToggleButton();
         txtPesquisarUsuario = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnEditarUsuario = new javax.swing.JButton();
         btnDeleteUsuario = new javax.swing.JButton();
+        lblPesquisarProduto = new javax.swing.JLabel();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
         setMinimumSize(new java.awt.Dimension(920, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTitulo.setText("Consulta de usuário");
         getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
-        btnPesquisarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPesquisarUsuario.setText("Pesquisar");
-        getContentPane().add(btnPesquisarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 100, 30));
-
         txtPesquisarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisarUsuarioActionPerformed(evt);
+        txtPesquisarUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesquisarUsuarioKeyTyped(evt);
             }
         });
-        getContentPane().add(txtPesquisarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 30));
+        getContentPane().add(txtPesquisarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 500, 30));
 
         tblUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "CPF", "Telefone"
+                "Código", "Nome", "CPF", "Telefone", "Usuário"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblUsuario.setMaximumSize(new java.awt.Dimension(300, 200));
         tblUsuario.setMinimumSize(new java.awt.Dimension(300, 200));
         jScrollPane1.setViewportView(tblUsuario);
@@ -113,6 +171,10 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnDeleteUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 100, 40));
 
+        lblPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPesquisarProduto.setText("Digite o nome ou CPF do usuário:");
+        getContentPane().add(lblPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, 30));
+
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
@@ -120,21 +182,48 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisarUsuarioActionPerformed
+    //VOLTAR PÁGINA PRINCIPAL
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnDeleteUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteUsuarioActionPerformed
+    //READ
+    private void txtPesquisarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarUsuarioKeyTyped
+        // Pesquisa pelo nome ou cpf
+        String sql = "SELECT * FROM login WHERE nome LIKE '%"
+                + txtPesquisarUsuario.getText()
+                + "%' OR cpf_usuario LIKE '%"
+                + txtPesquisarUsuario.getText()
+                + "%'"
+                + "ORDER BY codigo_usuario DESC";
 
+        //chamando o método para povoar a tabela "tblUsuario"
+        povoarJTable(sql);
+    }//GEN-LAST:event_txtPesquisarUsuarioKeyTyped
+
+    //READ
+    //CRIAÇÃO DO SQL AO ABRIR O FORMULÁRIO
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Carrega os dados na tabela "tblUsuario" quando abrir a tela "frmConsultaUsuario"
+        // cria o SQL
+        String sql = "SELECT * FROM login ORDER BY codigo_usuario DESC";
+
+        //chamando o método para povoar a tabela "tblCliente"
+        povoarJTable(sql);
+    }//GEN-LAST:event_formWindowOpened
+
+    //EDITAR USUÁRIO
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    //EXCLUIR USUÁRIO
+    private void btnDeleteUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }//GEN-LAST:event_btnDeleteUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,10 +266,10 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteUsuario;
     private javax.swing.JButton btnEditarUsuario;
-    private javax.swing.JToggleButton btnPesquisarUsuario;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;
+    private javax.swing.JLabel lblPesquisarProduto;
     private javax.swing.JTable tblUsuario;
     private javax.swing.JTextField txtPesquisarUsuario;
     private javax.swing.JLabel txtTitulo;

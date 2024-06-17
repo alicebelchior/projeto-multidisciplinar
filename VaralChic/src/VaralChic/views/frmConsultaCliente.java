@@ -29,6 +29,7 @@ public class frmConsultaCliente extends javax.swing.JFrame {
 
     private Connection conn = null;
 
+    //READ
     //MÉTODO PARA POVOAR A TABELA "tblCliente"
     //BUSCANDO DO BANCO DE DADOS
     public void povoarJTable(String sql) {
@@ -179,6 +180,7 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //READ
     //CRIAÇÃO DO SQL AO ABRIR O FORMULÁRIO
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaCliente"
@@ -189,6 +191,7 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         povoarJTable(sql);
     }//GEN-LAST:event_formWindowOpened
 
+    //READ
     private void txtPesquisarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarClienteKeyTyped
         // Pesquisa pelo nome ou cpf
         String sql = "SELECT * FROM cliente WHERE nome_cliente LIKE '%"

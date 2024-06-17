@@ -25,7 +25,9 @@ public class frmConsultaProduto extends javax.swing.JFrame {
     
      private Connection conn = null;
 
-    //MÉTODO PARA POVOAR A TABELA "tblCliente"
+     
+    //READ
+    //MÉTODO PARA POVOAR A TABELA "tblProduto"
     //BUSCANDO DO BANCO DE DADOS
     public void povoarJTable(String sql) {
         conn = Conexao.getConexao();
@@ -205,9 +207,10 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
+    //READ
     //CRIAÇÃO DO SQL AO ABRIR O FORMULÁRIO
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaCliente"
+        // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaProduto"
         // cria o SQL
         String sql = "SELECT * FROM produto ORDER BY codigo_produto DESC";
         
@@ -215,6 +218,7 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         povoarJTable(sql);
     }//GEN-LAST:event_formWindowOpened
 
+    //READ
     private void txtPesquisarProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoKeyTyped
         // Pesquisa pelo nome
         String sql = "SELECT * FROM produto WHERE categoria LIKE '%"

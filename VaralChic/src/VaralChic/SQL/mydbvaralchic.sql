@@ -1,29 +1,23 @@
 create database varal_chic;
 use varal_chic;
 
-create table login(
-codigo_login int not null auto_increment primary key,
+create table login (
+codigo_usuario int not null auto_increment primary key,
+nome varchar(100),
+cpf_usuario varchar(14) not null,
+telefone varchar(11),
 usuario varchar(50) not null,
 senha varchar(50) not null
 );
 
-create table usuario (
-codigo_usuario int not null auto_increment primary key,
-cpf_usuario varchar(14) not null,
-nome varchar(100) not null,
-telefone varchar(20) not null,
-codigo_login int,
-foreign key (codigo_login) references login (codigo_login)
-);
-
 create table cliente (
 codigo_cliente int not null auto_increment primary key,
+nome_cliente varchar(100) not null,
 cpf_cliente varchar(14) not null,
-nome varchar(100) not null,
-rg varchar(20) not null,
-endereco varchar(255) not null,
-telefone varchar(20) not null,
-email varchar(100) not null,
+rg_cliente varchar(9),
+endereco_cliente varchar(255),
+telefone_cliente varchar(11) not null,
+email_cliente varchar(100),
 observacao varchar(255)
 );
 
@@ -59,4 +53,3 @@ tipo_registro varchar(20) not null,
 valor decimal(10, 2) not null,
 data_registro date not null
 );
-

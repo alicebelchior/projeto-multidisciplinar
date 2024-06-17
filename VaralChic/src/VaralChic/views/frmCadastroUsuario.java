@@ -1,11 +1,14 @@
 package VaralChic.views;
 
+import VaralChic.model.CadastroUsuario;
+import VaralChic.model.CadastroUsuarioConexao;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Aluno
@@ -31,16 +34,14 @@ public class frmCadastroUsuario extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblNomeUsuario = new javax.swing.JLabel();
         lblCpfUsuario = new javax.swing.JLabel();
-        lblRgUsuario = new javax.swing.JLabel();
-        lblEnderecoUsuario = new javax.swing.JLabel();
         lblFoneUsuario = new javax.swing.JLabel();
-        lblEmailUsuario = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
         txtNomeUsuario = new javax.swing.JTextField();
         txtCpfUsuario = new javax.swing.JFormattedTextField();
-        txtRgUsuario = new javax.swing.JFormattedTextField();
-        txtEnderecoUsuario = new javax.swing.JTextField();
         txtFoneUsuario = new javax.swing.JTextField();
-        txtEmailUsuario1 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
         btnCadastrarUsuario = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
@@ -64,21 +65,17 @@ public class frmCadastroUsuario extends javax.swing.JFrame {
         lblCpfUsuario.setText("CPF");
         getContentPane().add(lblCpfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 30, 20));
 
-        lblRgUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblRgUsuario.setText("RG");
-        getContentPane().add(lblRgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, -1));
-
-        lblEnderecoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblEnderecoUsuario.setText("Endereço");
-        getContentPane().add(lblEnderecoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, 20));
-
         lblFoneUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblFoneUsuario.setText("Telefone");
-        getContentPane().add(lblFoneUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+        getContentPane().add(lblFoneUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
 
-        lblEmailUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblEmailUsuario.setText("E-mail");
-        getContentPane().add(lblEmailUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 50, 20));
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUsuario.setText("Usuário");
+        getContentPane().add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+
+        lblSenha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblSenha.setText("Senha");
+        getContentPane().add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
 
         txtNomeUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txtNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 500, 30));
@@ -88,31 +85,24 @@ public class frmCadastroUsuario extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(txtCpfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 200, 30));
-
-        try {
-            txtRgUsuario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.###.###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtRgUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRgUsuarioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtRgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 200, 30));
-
-        txtEnderecoUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txtEnderecoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 500, 30));
+        getContentPane().add(txtCpfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 500, 30));
 
         txtFoneUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txtFoneUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 500, 30));
+        getContentPane().add(txtFoneUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 500, 30));
 
-        txtEmailUsuario1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txtEmailUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 500, 30));
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 500, 30));
+
+        txtSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 500, 30));
 
         btnCadastrarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCadastrarUsuario.setText("Cadastrar");
+        btnCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCadastrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 130, 50));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -130,13 +120,39 @@ public class frmCadastroUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRgUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRgUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRgUsuarioActionPerformed
-
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    //SALVAR OS DADOS DO FORMULARIO CADASTRAR USUARIO
+    private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
+        // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "CadastroUsuario" (pacote model)
+        CadastroUsuario.nome = txtNomeUsuario.getText();
+        CadastroUsuario.cpf_usuario = txtCpfUsuario.getText();
+        CadastroUsuario.telefone = txtFoneUsuario.getText();
+        CadastroUsuario.usuario = txtUsuario.getText();
+        CadastroUsuario.senha = new String(txtSenha.getPassword());
+        
+        CadastroUsuarioConexao cadcan = new CadastroUsuarioConexao();
+        cadcan.InserirUsuario();
+        
+        JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
+        
+        //LIMPANDO OS DADOS DEPOIS DE SALVAR
+        limparCampos();
+    }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
+
+    //limpar campos do cadastro
+    public void limparCampos() {
+        txtNomeUsuario.setText("");
+        txtCpfUsuario.setText("");
+        txtFoneUsuario.setText("");
+        txtUsuario.setText("");
+        txtSenha.setText("");
+    }
 
     /**
      * @param args the command line arguments
@@ -180,18 +196,16 @@ public class frmCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarUsuario;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel lblCpfUsuario;
-    private javax.swing.JLabel lblEmailUsuario;
-    private javax.swing.JLabel lblEnderecoUsuario;
     private javax.swing.JLabel lblFoneUsuario;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel lblNomeUsuario;
-    private javax.swing.JLabel lblRgUsuario;
+    private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JFormattedTextField txtCpfUsuario;
-    private javax.swing.JTextField txtEmailUsuario1;
-    private javax.swing.JTextField txtEnderecoUsuario;
     private javax.swing.JTextField txtFoneUsuario;
     private javax.swing.JTextField txtNomeUsuario;
-    private javax.swing.JFormattedTextField txtRgUsuario;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

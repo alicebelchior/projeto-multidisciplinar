@@ -85,6 +85,9 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         btnEditarUsuario = new javax.swing.JButton();
         btnDeleteUsuario = new javax.swing.JButton();
         lblPesquisarProduto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtCodigoControle = new javax.swing.JTextField();
+        txtNomeControle = new javax.swing.JTextField();
         lblLogotipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -174,6 +177,22 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         lblPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPesquisarProduto.setText("Digite o nome ou CPF do usuário:");
         getContentPane().add(lblPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("USUÁRIO SELECIONADO:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
+
+        txtCodigoControle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtCodigoControle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtCodigoControle.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtCodigoControle.setEnabled(false);
+        getContentPane().add(txtCodigoControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 40, 30));
+
+        txtNomeControle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtNomeControle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtNomeControle.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtNomeControle.setEnabled(false);
+        getContentPane().add(txtNomeControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 450, 230, 30));
 
         lblLogotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
         getContentPane().add(lblLogotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
@@ -267,10 +286,13 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteUsuario;
     private javax.swing.JButton btnEditarUsuario;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogotipo;
     private javax.swing.JLabel lblPesquisarProduto;
     private javax.swing.JTable tblUsuario;
+    private javax.swing.JTextField txtCodigoControle;
+    private javax.swing.JTextField txtNomeControle;
     private javax.swing.JTextField txtPesquisarUsuario;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables

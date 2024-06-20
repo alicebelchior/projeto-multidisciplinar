@@ -104,7 +104,7 @@ public class frmVendaCrediario extends javax.swing.JFrame {
 
         boxParcelamento.setEditable(true);
         boxParcelamento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxParcelamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 X" }));
+        boxParcelamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1x", "2x", "3x", "4x", "5x", " " }));
         boxParcelamento.setToolTipText("");
         boxParcelamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

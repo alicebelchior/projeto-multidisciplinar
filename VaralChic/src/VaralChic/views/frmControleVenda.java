@@ -71,29 +71,14 @@ public class frmControleVenda extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 147, 790, 280));
 
         txtCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClienteActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 500, 30));
 
         txtValorTotal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtValorTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorTotalActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, 150, 30));
 
         boxPagamento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DINHEIRO", "CARTÃO DE DÉBITO", "CARTÃO DE CRÉDITO", "CREDIÁRIO" }));
+        boxPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "À VISTA", "À PRAZO", "CREDIÁRIO" }));
         boxPagamento.setToolTipText("");
-        boxPagamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxPagamentoActionPerformed(evt);
-            }
-        });
         getContentPane().add(boxPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 250, 30));
 
         btnFecharCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -123,18 +108,6 @@ public class frmControleVenda extends javax.swing.JFrame {
     private void btnFecharCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFecharCompraActionPerformed
-
-    private void boxPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPagamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxPagamentoActionPerformed
-
-    private void txtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClienteActionPerformed
-
-    private void txtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorTotalActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:

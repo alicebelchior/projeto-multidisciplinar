@@ -30,12 +30,13 @@ preco float(10) not null
 
 create table venda (
 codigo_venda int not null primary key auto_increment,
-codigo_cliente int,
+codigo_cliente int not null,
+codigo_produto int not null,
 data_venda date not null,
 valor decimal(10, 2) not null,
 metodo_pagamento varchar(100) not null,
-codigo_transacao varchar(20) not null,
-foreign key (codigo_cliente) references cliente (codigo_cliente)
+foreign key (codigo_cliente) references cliente (codigo_cliente),
+foreign key (codigo_produto) references produto (codigo_produto)
 );
 
 create table crediario (

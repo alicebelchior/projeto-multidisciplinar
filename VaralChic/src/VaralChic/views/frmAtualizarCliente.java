@@ -1,19 +1,24 @@
 package VaralChic.views;
 
+import VaralChic.conexao.Conexao;
 import VaralChic.model.CadastroCliente;
 import VaralChic.model.CadastroClienteConexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author alice
  */
-public class frmCadastroCliente extends javax.swing.JFrame {
+public class frmAtualizarCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroCliente
      */
-    public frmCadastroCliente() {
+    public frmAtualizarCliente() {
         initComponents();
     }
 
@@ -40,10 +45,10 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         txtCpfCliente = new javax.swing.JFormattedTextField();
         txtRgCliente = new javax.swing.JFormattedTextField();
         txtEnderecoCliente = new javax.swing.JTextField();
-        txtFoneCliente = new javax.swing.JFormattedTextField();
+        txtFoneCliente = new javax.swing.JTextField();
         txtEmailCliente = new javax.swing.JTextField();
         txtObs = new javax.swing.JTextField();
-        btnSalvar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         lblLogotipo = new javax.swing.JLabel();
 
@@ -53,10 +58,15 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         setLocation(new java.awt.Point(100, 100));
         setMinimumSize(new java.awt.Dimension(920, 600));
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblTitulo.setText("Cadastro de cliente");
+        lblTitulo.setText("Atualizar de cliente");
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
 
         lblNomeCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -107,11 +117,7 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         txtEnderecoCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txtEnderecoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 500, 30));
 
-        try {
-            txtFoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtFoneCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txtFoneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 500, 30));
 
         txtEmailCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -120,14 +126,14 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         txtObs.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txtObs, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 500, 60));
 
-        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                btnAtualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, 130, 50));
+        getContentPane().add(btnAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, 130, 50));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -145,17 +151,17 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //VOLTAR PARA A PAGINA PRINCIPAL
+    //VOLTAR PARA A PAGINA ANTERIOR
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // CHAMANDO A PÁGINA PRINCIPAL
-        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
-        pagPrincipal.setVisible(true);
+        // CHAMANDO A PÁGINA DE CONSULTA
+        frmConsultaCliente consultCliente = new frmConsultaCliente();
+        consultCliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     //SALVAR OS DADOS DO FORMULARIO CADASTRAR
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "CadastroCliente" (pacote model)
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        //pegar os dados dos componentes e jogar na classe (model) CadastroCliente
         CadastroCliente.nome_cliente = txtNomeCliente.getText();
         CadastroCliente.cpf_cliente = txtCpfCliente.getText();
         CadastroCliente.rg_cliente = txtRgCliente.getText();
@@ -164,25 +170,87 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         CadastroCliente.email_cliente = txtEmailCliente.getText();
         CadastroCliente.observacao = txtObs.getText();
         
-        CadastroClienteConexao cadcan = new CadastroClienteConexao();
-        cadcan.InserirCliente();
-        
-        JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso");
-        
-        //LIMPANDO OS DADOS DEPOIS DE SALVAR
-        limparCampos();
-    }//GEN-LAST:event_btnSalvarActionPerformed
+        AtualizarCliente();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    //limpar campos do cadastro
-    public void limparCampos() {
-        txtNomeCliente.setText("");
-        txtCpfCliente.setText("");
-        txtRgCliente.setText("");
-        txtEnderecoCliente.setText("");
-        txtFoneCliente.setText("");
-        txtEmailCliente.setText("");
-        txtObs.setText("");
+    //UPDATE
+    public void AtualizarCliente() {
+        Connection conn = null;
+        
+        //conexão com o BD
+        conn = Conexao.getConexao();
+
+        String sql = "UPDATE cliente SET nome_cliente = ?, cpf_cliente = ?, rg_cliente = ?, endereco_cliente = ?,"
+                + " telefone_cliente = ?, email_cliente = ?, observacao = ?"
+                + "WHERE codigo_cliente = ?";
+
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, CadastroCliente.nome_cliente);
+            stmt.setString(2, CadastroCliente.cpf_cliente);
+            stmt.setString(3, CadastroCliente.rg_cliente);
+            stmt.setString(4, CadastroCliente.endereco_cliente);
+            stmt.setString(5, CadastroCliente.telefone_cliente);
+            stmt.setString(6, CadastroCliente.email_cliente);
+            stmt.setString(7, CadastroCliente.observacao);
+            stmt.setInt(8, CadastroCliente.codigo_cliente);
+
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Dados alterados com suceso");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao mostrar no banco de dados! Erro:" + ex);
+        } finally {
+            Conexao.fecharConexao(conn, stmt);
+        }
+        
+        this.dispose();
     }
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // buscar os dados quando iniciar o formulario
+        povoarJTable(); 
+    }//GEN-LAST:event_formWindowOpened
+
+    //método para buscar os dados selecionados na tabela "tblCliente" da tela "frmConsultaCliente"
+    //e trazê-los para os campos do "frmAtualizarCliente
+    public void povoarJTable() {
+        Connection conn = null;
+        
+        ResultSet rs = null;
+        
+        PreparedStatement stmt = null;
+        
+        conn = Conexao.getConexao(); //conectar ao banco
+        
+        String sql = "SELECT * FROM cliente WHERE codigo_cliente = '" + CadastroCliente.codigo_cliente + "'";
+        
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.execute();
+            
+            rs = stmt.executeQuery();
+            
+            rs.next();
+            
+            txtNomeCliente.setText(rs.getString("nome_cliente"));
+            txtCpfCliente.setText(rs.getString("cpf_cliente"));
+            txtRgCliente.setText(rs.getString("rg_cliente"));
+            txtEnderecoCliente.setText(rs.getString("endereco_cliente"));
+            txtFoneCliente.setText(rs.getString("telefone_cliente"));
+            txtEmailCliente.setText(rs.getString("email_cliente"));
+            txtObs.setText(rs.getString("observacao"));
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco de dados! Erro:" + e);
+        } finally {
+            Conexao.fecharConexao(conn, stmt, rs);
+        }
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -201,14 +269,18 @@ public class frmCadastroCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -217,13 +289,13 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmCadastroCliente().setVisible(true);
+                new frmAtualizarCliente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextPane jTextPane5;
@@ -239,7 +311,7 @@ public class frmCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCpfCliente;
     private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JTextField txtEnderecoCliente;
-    private javax.swing.JFormattedTextField txtFoneCliente;
+    private javax.swing.JTextField txtFoneCliente;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtObs;
     private javax.swing.JFormattedTextField txtRgCliente;

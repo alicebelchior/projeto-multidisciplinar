@@ -1,7 +1,12 @@
 package VaralChic.views;
 
+import VaralChic.conexao.Conexao;
 import VaralChic.model.CadastroUsuario;
 import VaralChic.model.CadastroUsuarioConexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /*
@@ -51,6 +56,11 @@ public class frmAtualizarUsuario extends javax.swing.JFrame {
         setFocusCycleRoot(false);
         setLocation(new java.awt.Point(100, 100));
         setMinimumSize(new java.awt.Dimension(920, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -136,18 +146,57 @@ public class frmAtualizarUsuario extends javax.swing.JFrame {
         CadastroUsuario.telefone = txtFoneUsuario.getText();
         CadastroUsuario.usuario = txtUsuario.getText();
         CadastroUsuario.senha = new String(txtSenha.getPassword());
-        
-        CadastroUsuarioConexao cadcan = new CadastroUsuarioConexao();
-        cadcan.InserirUsuario();
-        
+
+        CadastroUsuarioConexao cadprodupd = new CadastroUsuarioConexao();
+        cadprodupd.AtualizarUsuario();
+
         JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso");
-        
+
         //CHAMANDO A TELA DE CONSULTA DE USUARIO
         frmConsultaUsuario consultaUsuario = new frmConsultaUsuario();
         consultaUsuario.setVisible(true);
+
         this.dispose();
     }//GEN-LAST:event_btnAtualizarUsuarioActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // buscar os dados quando iniciar o formulario
+        povoarJTable();
+    }//GEN-LAST:event_formWindowOpened
+
+    //método para buscar os dados selecionados na tabela "tblUsuario" da tela "frmConsultaUsuario"
+    //e trazê-los para os campos do "frmAtualizarUsuario
+    public void povoarJTable() {
+        Connection conn = null;
+
+        ResultSet rs = null;
+
+        PreparedStatement stmt = null;
+
+        conn = Conexao.getConexao(); //conectar ao banco
+        
+        String sql = "SELECT * FROM login WHERE codigo_usuario = '" + CadastroUsuario.codigo_usuario + "'";
+        
+         try {
+            stmt = conn.prepareStatement(sql);
+            stmt.execute();
+            
+            rs = stmt.executeQuery();
+            
+            rs.next();
+            
+            txtNomeUsuario.setText(rs.getString("nome"));
+            txtCpfUsuario.setText(rs.getString("cpf_usuario"));
+            txtFoneUsuario.setText(rs.getString("telefone"));
+            txtUsuario.setText(rs.getString("usuario"));
+            txtSenha.setText(rs.getString("senha"));
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco de dados! Erro:" + e);
+        } finally {
+            Conexao.fecharConexao(conn, stmt, rs);
+        }
+    }
 
     /**
      * @param args the command line arguments

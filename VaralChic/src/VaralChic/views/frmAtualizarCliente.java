@@ -170,45 +170,11 @@ public class frmAtualizarCliente extends javax.swing.JFrame {
         CadastroCliente.email_cliente = txtEmailCliente.getText();
         CadastroCliente.observacao = txtObs.getText();
         
-        AtualizarCliente();
-    }//GEN-LAST:event_btnAtualizarActionPerformed
-
-    //UPDATE
-    public void AtualizarCliente() {
-        Connection conn = null;
-        
-        //conexão com o BD
-        conn = Conexao.getConexao();
-
-        String sql = "UPDATE cliente SET nome_cliente = ?, cpf_cliente = ?, rg_cliente = ?, endereco_cliente = ?,"
-                + " telefone_cliente = ?, email_cliente = ?, observacao = ?"
-                + "WHERE codigo_cliente = ?";
-
-        PreparedStatement stmt = null;
-
-        try {
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, CadastroCliente.nome_cliente);
-            stmt.setString(2, CadastroCliente.cpf_cliente);
-            stmt.setString(3, CadastroCliente.rg_cliente);
-            stmt.setString(4, CadastroCliente.endereco_cliente);
-            stmt.setString(5, CadastroCliente.telefone_cliente);
-            stmt.setString(6, CadastroCliente.email_cliente);
-            stmt.setString(7, CadastroCliente.observacao);
-            stmt.setInt(8, CadastroCliente.codigo_cliente);
-
-            stmt.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Dados alterados com suceso");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao mostrar no banco de dados! Erro:" + ex);
-        } finally {
-            Conexao.fecharConexao(conn, stmt);
-        }
+        CadastroClienteConexao cadcupd = new CadastroClienteConexao();
+        cadcupd.AtualizarCliente();
         
         this.dispose();
-    }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
     
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // buscar os dados quando iniciar o formulario

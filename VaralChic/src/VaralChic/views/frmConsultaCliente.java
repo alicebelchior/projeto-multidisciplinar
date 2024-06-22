@@ -2,6 +2,7 @@ package VaralChic.views;
 
 import VaralChic.conexao.Conexao;
 import VaralChic.model.CadastroCliente;
+import VaralChic.model.CadastroClienteConexao;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -218,7 +219,7 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         povoarJTable(sql);
     }//GEN-LAST:event_formWindowOpened
 
-    //READ
+    //READ (PESQUISA PELO NOME/CPF)
     private void txtPesquisarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarClienteKeyTyped
         // Pesquisa pelo nome ou cpf
         String sql = "SELECT * FROM cliente WHERE nome_cliente LIKE '%"
@@ -241,7 +242,7 @@ public class frmConsultaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     //UPDATE
-    //ATULIZAR CLIENTE
+    //ATUALIZAR CLIENTE
     private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
         //verificando se o campo de código do cliente selecionado não esta vazio
         if (txtCodigoControle.getText().equals("")) {
@@ -260,18 +261,20 @@ public class frmConsultaCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 
+    //UPDATE
     // MÉTODO PARA ATUALIZAR O DADO DA LINHA SELECIONADA
     private void tblClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClienteMouseClicked
         //passando os valores da tabela "tblCliente" para os JTFields "txtCodigoControle" e "txtNomeControle"
         int linha = tblCliente.getSelectedRow(); //vai selecionar a linha e jogar na var linha
 
-        //selecioando a coluna "codigo"
+        //selecionando a coluna "codigo"
         txtCodigoControle.setText(tblCliente.getValueAt(linha, 0).toString());
 
-        //selecioando a coluna "nome"
+        //selecionando a coluna "nome"
         txtNomeControle.setText(tblCliente.getValueAt(linha, 1).toString());
     }//GEN-LAST:event_tblClienteMouseClicked
 
+    //DELETE
     //EXCLUIR CLIENTE
     private void btnDeleteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteClienteActionPerformed
         // deletar a linha escolhida na tabela "tblCliente"
@@ -286,12 +289,13 @@ public class frmConsultaCliente extends javax.swing.JFrame {
 
             //mensagem para LEMBRAR O SUSUARIO QUE ELE VAI EXCLUIR O ITEM SELECIONADO
             JOptionPane.showConfirmDialog(null, "Você tem certeza que você quer EXCLUIR o cliente",
-                    "apagar cadastro de cliente", confirmacaoJOptionPane);
+                    "APAGAR CADASTRO DE CLIENTE", confirmacaoJOptionPane);
 
             //se a opção selecionada for ok, exclui o item selecionado
             if (confirmacaoJOptionPane == JOptionPane.OK_CANCEL_OPTION) {
                 //chamando o metodo deletar
-                DeletarCliente();
+                CadastroClienteConexao cadcdel = new CadastroClienteConexao();
+                cadcdel.DeletarCliente();
 
                 //atualizar a "tblCliente" depois de excluir o item 
                 String sql = "SELECT * FROM cliente ORDER BY codigo_cliente DESC";
@@ -304,28 +308,6 @@ public class frmConsultaCliente extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnDeleteClienteActionPerformed
-
-    //DELETE
-    //metodo para DELETAR a linha e os dados escolhidos no banco de dados
-    public void DeletarCliente() {
-
-        conn = Conexao.getConexao();//conexão com o banco de dados
-
-        String sql = "DELETE FROM cliente WHERE codigo_cliente = ?";
-
-        PreparedStatement stmt = null;
-
-        try {
-            stmt = conn.prepareStatement(sql);
-
-            stmt.setInt(1, CadastroCliente.codigo_cliente);
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco de dados! Erro:" + e);
-        }
-    }
 
     /**
      * @param args the command line arguments

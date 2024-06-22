@@ -1,7 +1,12 @@
 package VaralChic.views;
 
+import VaralChic.conexao.Conexao;
 import VaralChic.model.CadastroProduto;
 import VaralChic.model.CadastroProdutoConexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class frmAtualizarProduto extends javax.swing.JFrame {
@@ -42,6 +47,11 @@ public class frmAtualizarProduto extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(920, 600));
         setName("Cadastro de Produto"); // NOI18N
         setSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -102,30 +112,57 @@ public class frmAtualizarProduto extends javax.swing.JFrame {
         CadastroProduto.categoria = txtCategoria.getText();
         CadastroProduto.quantidade_estoque = Integer.parseInt(txtQuantEstoque.getText());
         CadastroProduto.preco = Float.parseFloat(txtPreco.getText());
-        
-        CadastroProdutoConexao cadprod = new CadastroProdutoConexao();
-        cadprod.InserirProduto();
-        
-        JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
-        
-        //LIMPANDO OS DADOS DEPOIS DE SALVAR
-        limparCampos();
+
+        CadastroProdutoConexao cadprodupd = new CadastroProdutoConexao();
+        cadprodupd.AtualizarProduto();
+
+        this.dispose();
     }//GEN-LAST:event_btnAtualizarProdutoActionPerformed
 
-    //limpar campos do cadastro
-    public void limparCampos() {
-        txtCategoria.setText("");
-        txtQuantEstoque.setText("");
-        txtPreco.setText("");
-    }
-    
-   //VOLTAR PARA A PAGINA ANTERIOR
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // buscar os dados quando iniciar o formulario
+        povoarJTable();
+    }//GEN-LAST:event_formWindowOpened
+
+    //VOLTAR PARA A PAGINA ANTERIOR
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // CHAMANDO A PÁGINA DE CONSULTA
         frmConsultaProduto updtProduto = new frmConsultaProduto();
         updtProduto.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    //método para buscar os dados selecionados na tabela "tblProduto" da tela "frmConsultProduto"
+    //e trazê-los para os campos do "frmAtualizarProduto"
+    public void povoarJTable() {
+        Connection conn = null;
+
+        ResultSet rs = null;
+
+        PreparedStatement stmt = null;
+
+        conn = Conexao.getConexao(); //conectar ao banco
+
+        String sql = "SELECT * FROM produto WHERE codigo_produto = '" + CadastroProduto.codigo_produto + "'";
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.execute();
+
+            rs = stmt.executeQuery();
+
+            rs.next();
+
+            txtCategoria.setText(rs.getString("categoria"));
+            txtQuantEstoque.setText(rs.getString("quantidade_estoque"));
+            txtPreco.setText(rs.getString("preco"));
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco de dados! Erro:" + e);
+        } finally {
+            Conexao.fecharConexao(conn, stmt, rs);
+        }
+    }
 
     /**
      * @param args the command line arguments

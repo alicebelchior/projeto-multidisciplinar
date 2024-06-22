@@ -1,6 +1,8 @@
 package VaralChic.views;
 
 import VaralChic.conexao.Conexao;
+import VaralChic.model.CadastroUsuario;
+import VaralChic.model.CadastroUsuarioConexao;
 import javax.swing.table.JTableHeader;
 import java.awt.Font;
 import java.sql.Connection;
@@ -15,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Aluno
@@ -27,30 +28,30 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
      */
     public frmConsultaUsuario() {
         initComponents();
-        
+
         JTableHeader jth = tblUsuario.getTableHeader();
         jth.setFont(new Font("Tahoma", Font.BOLD, 14));
     }
 
     private Connection conn = null;
-    
+
     //READ
-    //MÉTODO PARA POVOAR A TABELA "tblCliente"
+    //MÉTODO PARA POVOAR A TABELA "tblUsuario"
     //BUSCANDO DO BANCO DE DADOS
     public void povoarJTable(String sql) {
         conn = Conexao.getConexao();
-        
+
         try {
-             PreparedStatement stmt = conn.prepareCall(sql);
+            PreparedStatement stmt = conn.prepareCall(sql);
             stmt.execute();
 
             ResultSet rs = stmt.executeQuery();
-            
+
             //pegando uma biblioteca que vai criar uma classe que irá povoar a tabela
             DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
             model.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
-            
-             while (rs.next()) {
+
+            while (rs.next()) {
                 model.addRow(new Object[]{
                     rs.getInt("codigo_usuario"),
                     rs.getString("nome"),
@@ -59,15 +60,15 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
                     rs.getString("usuario")
                 });
             }
-             
-             //fechar a conexão
+
+            //fechar a conexão
             Conexao.fecharConexao(conn, stmt, rs);
-             
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível obter os dados do banco. Veja: " + e);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,6 +141,11 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         });
         tblUsuario.setMaximumSize(new java.awt.Dimension(300, 200));
         tblUsuario.setMinimumSize(new java.awt.Dimension(300, 200));
+        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUsuario);
         if (tblUsuario.getColumnModel().getColumnCount() > 0) {
             tblUsuario.getColumnModel().getColumn(0).setMaxWidth(200);
@@ -209,7 +215,7 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    //READ
+    //READ (PESQUISA PELO NOME/CPF)
     private void txtPesquisarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarUsuarioKeyTyped
         // Pesquisa pelo nome ou cpf
         String sql = "SELECT * FROM login WHERE nome LIKE '%"
@@ -234,14 +240,72 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
         povoarJTable(sql);
     }//GEN-LAST:event_formWindowOpened
 
-    //EDITAR USUÁRIO
+    //UPDATE
+    //ATUALIZAR USUÁRIO
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
-        // TODO add your handling code here:
+        //verificando se o campo de código do cliente selecionado não esta vazio
+        if (txtCodigoControle.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para atualizar");
+        } else {
+            // abrir a tela "frmAtualizarUsuario"
+            frmAtualizarUsuario updtUsuario = new frmAtualizarUsuario();
+            updtUsuario.setVisible(true);
+
+            //jogar o codigo_cliente (pk) no JTField "txtCodigoControle"
+            CadastroUsuario.codigo_usuario = Integer.parseInt(txtCodigoControle.getText());
+
+            //depois de atualizar, limpar os campos com os dados do cliente previamente atualizado
+            txtCodigoControle.setText("");
+            txtNomeControle.setText("");
+        }
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
-    //EXCLUIR USUÁRIO
+    //UPDATE
+    // MÉTODO PARA ATUALIZAR O DADO DA LINHA SELECIONADA
+    private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
+        //passando os valores da tabela "tblCliente" para os JTFields "txtCodigoControle" e "txtNomeControle"
+        int linha = tblUsuario.getSelectedRow(); //vai selecionar a linha e jogar na var linha
+
+        //selecionando a coluna "codigo"
+        txtCodigoControle.setText(tblUsuario.getValueAt(linha, 0).toString());
+
+        //selecionando a coluna "nome"
+        txtNomeControle.setText(tblUsuario.getValueAt(linha, 1).toString());
+    }//GEN-LAST:event_tblUsuarioMouseClicked
+
+    //DELETE
+    //EXCLUIR CLIENTE
     private void btnDeleteUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUsuarioActionPerformed
-        // TODO add your handling code here:
+        // deletar a linha escolhida na tabela "tblUsuario"
+        //verificando se o campo de código do cliente selecionado não esta vazio
+        if (txtCodigoControle.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para EXCLUIR ");
+        } else {
+            //jogar o codigo_cliente (pk) no JTField "txtCodigoControle"
+            CadastroUsuario.codigo_usuario = Integer.parseInt(txtCodigoControle.getText());
+
+            int confirmacaoJOptionPane = JOptionPane.OK_CANCEL_OPTION;
+
+            //mensagem para LEMBRAR O SUSUARIO QUE ELE VAI EXCLUIR O ITEM SELECIONADO
+            JOptionPane.showConfirmDialog(null, "Você tem certeza que você quer EXCLUIR o usuário",
+                    "APAGAR CADASTRO DE USUÁRIO", confirmacaoJOptionPane);
+
+            //se a opção selecionada for ok, exclui o item selecionado
+            if (confirmacaoJOptionPane == JOptionPane.OK_CANCEL_OPTION) {
+                //chamando o metodo deletar
+                CadastroUsuarioConexao cadproddel = new CadastroUsuarioConexao();
+                cadproddel.DeletarUsuario();
+
+                //atualizar a "tblCliente" depois de excluir o item 
+                String sql = "SELECT * FROM login ORDER BY codigo_usuario DESC";
+
+                povoarJTable(sql);
+
+                //depois de excluir, limpar os campos com os dados do cliente previamente deletado
+                txtCodigoControle.setText("");
+                txtNomeControle.setText("");
+            }
+        }
     }//GEN-LAST:event_btnDeleteUsuarioActionPerformed
 
     /**

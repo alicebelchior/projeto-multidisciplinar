@@ -1,6 +1,8 @@
 package VaralChic.views;
 
 import VaralChic.conexao.Conexao;
+import VaralChic.model.CadastroProduto;
+import VaralChic.model.CadastroProdutoConexao;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,6 +143,11 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         tblProduto.setAutoscrolls(false);
         tblProduto.setMaximumSize(new java.awt.Dimension(300, 200));
         tblProduto.setMinimumSize(new java.awt.Dimension(300, 200));
+        tblProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProdutoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProduto);
         if (tblProduto.getColumnModel().getColumnCount() > 0) {
             tblProduto.getColumnModel().getColumn(0).setMinWidth(150);
@@ -218,12 +225,24 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnDeleteProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteProdutoActionPerformed
-
+    //UPDATE
+    //ATULIZAR PRODUTO
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        // TODO add your handling code here:
+        //verificando se o campo de código do produto selecionado não esta vazio
+        if (txtCodigoControle.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para atualizar");
+        } else {
+            // abrir a tela "frmAtualizarProduto"
+            frmAtualizarProduto updtProduto = new frmAtualizarProduto();
+            updtProduto.setVisible(true);
+
+            //jogar o codigo_cliente (pk) no JTField "txtCodigoControle"
+            CadastroProduto.codigo_produto = Integer.parseInt(txtCodigoControle.getText());
+
+            //depois de atualizar, limpar os campos com os dados do cliente previamente atualizado
+            txtCodigoControle.setText("");
+            txtNomeControle.setText("");
+        }
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     //READ
@@ -237,7 +256,7 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         povoarJTable(sql);
     }//GEN-LAST:event_formWindowOpened
 
-    //READ
+    //READ (PESQUISA PELA CATEGORIA DO PRODUTO)
     private void txtPesquisarProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoKeyTyped
         // Pesquisa pelo nome
         String sql = "SELECT * FROM produto WHERE categoria LIKE '%"
@@ -249,6 +268,50 @@ public class frmConsultaProduto extends javax.swing.JFrame {
         povoarJTable(sql);
     }//GEN-LAST:event_txtPesquisarProdutoKeyTyped
 
+    //UPDATE
+    // MÉTODO PARA ATUALIZAR O DADO DA LINHA SELECIONADA
+    private void tblProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutoMouseClicked
+        //passando os valores da tabela "tblProduto" para os JTFields "txtCodigoControle" e "txtNomeControle"
+        int linha = tblProduto.getSelectedRow(); //vai selecionar a linha e jogar na var linha
+
+        //selecionando a coluna "codigo"
+        txtCodigoControle.setText(tblProduto.getValueAt(linha, 0).toString());
+
+        //selecionando a coluna "categoria"
+        txtNomeControle.setText(tblProduto.getValueAt(linha, 1).toString());
+    }//GEN-LAST:event_tblProdutoMouseClicked
+
+    //DELETE
+    //EXCLUIR PRODUTO
+    private void btnDeleteProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProdutoActionPerformed
+        // deletar a linha escolhida na tabela "tblProduto"
+        //verificando se o campo de código do produto selecionado não esta vazio
+        if (txtCodigoControle.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para EXCLUIR ");
+        } else {
+            //jogar o codigo_cliente (pk) no JTField "txtCodigoControle"
+            CadastroProduto.codigo_produto = Integer.parseInt(txtCodigoControle.getText());
+
+            int confirmacaoJOptionPane = JOptionPane.OK_CANCEL_OPTION;
+            
+            //mensagem para LEMBRAR O SUSUARIO QUE ELE VAI EXCLUIR O ITEM SELECIONADO
+            JOptionPane.showConfirmDialog(null, "Você tem certeza que você quer EXCLUIR o produto",
+                    "APAGAR CADASTRO DE PRODUTO", confirmacaoJOptionPane);
+
+            //se a opção selecionada for ok, exclui o item selecionado
+            if (confirmacaoJOptionPane == JOptionPane.OK_CANCEL_OPTION) {
+                //chamando o metodo deletar
+                CadastroProdutoConexao cadproddel = new CadastroProdutoConexao();
+                cadproddel.DeletarProduto();
+                
+                //atualizar a "tblProduto" depois de excluir o item 
+                String sql = "SELECT * FROM produto ORDER BY codigo_produto DESC";
+
+                povoarJTable(sql);
+            }
+        }
+    }//GEN-LAST:event_btnDeleteProdutoActionPerformed
+    
     /**
      * @param args the command line arguments
      */

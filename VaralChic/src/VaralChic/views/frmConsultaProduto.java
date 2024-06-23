@@ -248,7 +248,7 @@ public class frmConsultaProduto extends javax.swing.JFrame {
     //READ
     //CRIAÇÃO DO SQL AO ABRIR O FORMULÁRIO
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // Carrega os dados na tabela "tblCliente" quando abrir a tela "frmConsultaProduto"
+        // Carrega os dados na tabela "tblProduto" quando abrir a tela "frmConsultaProduto"
         // cria o SQL
         String sql = "SELECT * FROM produto ORDER BY codigo_produto DESC";
         
@@ -264,7 +264,7 @@ public class frmConsultaProduto extends javax.swing.JFrame {
                 + "%'"
                 + "ORDER BY codigo_produto DESC";
         
-        //chamando o método para povoar a tabela "tblCliente"
+        //chamando o método para povoar a tabela "tblProduto"
         povoarJTable(sql);
     }//GEN-LAST:event_txtPesquisarProdutoKeyTyped
 

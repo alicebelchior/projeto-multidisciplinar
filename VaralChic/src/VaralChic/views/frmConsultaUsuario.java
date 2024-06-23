@@ -287,7 +287,7 @@ public class frmConsultaUsuario extends javax.swing.JFrame {
             int confirmacaoJOptionPane = JOptionPane.OK_CANCEL_OPTION;
 
             //mensagem para LEMBRAR O SUSUARIO QUE ELE VAI EXCLUIR O ITEM SELECIONADO
-            JOptionPane.showConfirmDialog(null, "Você tem certeza que você quer EXCLUIR o usuário",
+            JOptionPane.showConfirmDialog(null, "Você tem certeza que você quer EXCLUIR o usuário?",
                     "APAGAR CADASTRO DE USUÁRIO", confirmacaoJOptionPane);
 
             //se a opção selecionada for ok, exclui o item selecionado

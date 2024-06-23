@@ -57,7 +57,6 @@ public class frmAtualizarCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
         setMinimumSize(new java.awt.Dimension(920, 600));
-        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);

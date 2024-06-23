@@ -52,7 +52,6 @@ public class frmCadastroCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
         setMinimumSize(new java.awt.Dimension(920, 600));
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

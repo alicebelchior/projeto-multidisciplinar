@@ -106,6 +106,7 @@ public class frmAtualizarProduto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //UPDATE
     //SALVAR OS DADOS DO FORMULARIO CADASTRAR PRODUTO
     private void btnAtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProdutoActionPerformed
         // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "CadastroProduto" (pacote model)

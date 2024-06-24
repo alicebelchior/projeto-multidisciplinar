@@ -57,15 +57,23 @@ public class frmControleVenda extends javax.swing.JFrame {
         tblProdutoVendas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblProdutoVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Produto", "Código", "Quantidade", "Valor Unitário", "Valor Total"
+                "Cliente", "Produto", "Quantidade", "Valor Unitário"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblProdutoVendas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 147, 790, 280));

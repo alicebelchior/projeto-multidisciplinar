@@ -49,7 +49,7 @@ public class frmConsultaProduto extends javax.swing.JFrame {
                     rs.getInt("codigo_produto"),
                     rs.getString("categoria"),
                     rs.getString("quantidade_estoque"),
-                    rs.getString("preco")
+                    rs.getFloat("preco")
                 });
             }
 
@@ -139,7 +139,15 @@ public class frmConsultaProduto extends javax.swing.JFrame {
             new String [] {
                 "CÓDIGO", "CATEGORIA DE ROUPA", "QUANTIDADE", "PREÇO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblProduto.setAutoscrolls(false);
         tblProduto.setMaximumSize(new java.awt.Dimension(300, 200));
         tblProduto.setMinimumSize(new java.awt.Dimension(300, 200));
@@ -153,12 +161,15 @@ public class frmConsultaProduto extends javax.swing.JFrame {
             tblProduto.getColumnModel().getColumn(0).setMinWidth(150);
             tblProduto.getColumnModel().getColumn(0).setPreferredWidth(150);
             tblProduto.getColumnModel().getColumn(0).setMaxWidth(150);
-            tblProduto.getColumnModel().getColumn(2).setMinWidth(100);
-            tblProduto.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tblProduto.getColumnModel().getColumn(2).setMaxWidth(100);
-            tblProduto.getColumnModel().getColumn(3).setMinWidth(100);
-            tblProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tblProduto.getColumnModel().getColumn(3).setMaxWidth(100);
+            tblProduto.getColumnModel().getColumn(1).setMinWidth(250);
+            tblProduto.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tblProduto.getColumnModel().getColumn(1).setMaxWidth(250);
+            tblProduto.getColumnModel().getColumn(2).setMinWidth(250);
+            tblProduto.getColumnModel().getColumn(2).setPreferredWidth(250);
+            tblProduto.getColumnModel().getColumn(2).setMaxWidth(250);
+            tblProduto.getColumnModel().getColumn(3).setMinWidth(150);
+            tblProduto.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblProduto.getColumnModel().getColumn(3).setMaxWidth(150);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 785, 265));

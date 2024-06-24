@@ -5,6 +5,20 @@
  */
 package VaralChic.views;
 
+import VaralChic.conexao.Conexao;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 /**
  *
  * @author Aluno
@@ -16,6 +30,18 @@ public class frmControleVenda2 extends javax.swing.JFrame {
      */
     public frmControleVenda2() {
         initComponents();
+        
+        //tabela cliente
+        JTableHeader jthCliente = tblCliente.getTableHeader();
+        jthCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
+        
+        //tabela produto
+        JTableHeader jthProduto = tblProduto.getTableHeader();
+        jthProduto.setFont(new Font("Tahoma", Font.BOLD, 14));
+        
+        //tabela venda
+        JTableHeader jthVenda = tblVenda.getTableHeader();
+        jthVenda.setFont(new Font("Tahoma", Font.BOLD, 14));
     }
 
     /**
@@ -52,9 +78,18 @@ public class frmControleVenda2 extends javax.swing.JFrame {
         lblPagamento = new javax.swing.JLabel();
         boxPagamento = new javax.swing.JComboBox<>();
         btnFecharCompra = new javax.swing.JButton();
+        lblVatorTotal1 = new javax.swing.JLabel();
+        txtDataCompra = new javax.swing.JFormattedTextField();
+        btnAdicionar = new javax.swing.JButton();
+        btnAdicionar1 = new javax.swing.JButton();
         jLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -74,6 +109,8 @@ public class frmControleVenda2 extends javax.swing.JFrame {
         });
         getContentPane().add(txtPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 280, 30));
 
+        JScrollPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         tblCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,23 +122,23 @@ public class frmControleVenda2 extends javax.swing.JFrame {
         ));
         JScrollPane.setViewportView(tblCliente);
 
-        getContentPane().add(JScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 280, 50));
+        getContentPane().add(JScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 280, 70));
 
         txtCodigoControleCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtCodigoControleCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtCodigoControleCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtCodigoControleCliente.setEnabled(false);
-        getContentPane().add(txtCodigoControleCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 40, 30));
+        getContentPane().add(txtCodigoControleCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 40, 30));
 
         txtNomeControleCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtNomeControleCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtNomeControleCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNomeControleCliente.setEnabled(false);
-        getContentPane().add(txtNomeControleCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 230, 30));
+        getContentPane().add(txtNomeControleCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 230, 30));
 
         lblPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPesquisarProduto.setText("Produto");
-        getContentPane().add(lblPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 70, 30));
+        getContentPane().add(lblPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 70, 30));
 
         txtPesquisarProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPesquisarProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -110,13 +147,13 @@ public class frmControleVenda2 extends javax.swing.JFrame {
                 txtPesquisarProdutoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 280, 30));
+        getContentPane().add(txtPesquisarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 280, 30));
 
         txtProduto1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtProduto1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtProduto1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtProduto1.setEnabled(false);
-        getContentPane().add(txtProduto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 40, 30));
+        getContentPane().add(txtProduto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 40, 30));
 
         txtProduto2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtProduto2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -127,44 +164,57 @@ public class frmControleVenda2 extends javax.swing.JFrame {
                 txtProduto2ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 230, 30));
+        getContentPane().add(txtProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 230, 30));
+
+        JScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tblProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
                 {null, null, null}
             },
             new String [] {
-                "Código", "Produto", "Valor Unitário"
+                "Código", "Produto", "Valor"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         JScrollPane1.setViewportView(tblProduto);
 
-        getContentPane().add(JScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 280, 50));
+        getContentPane().add(JScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 280, 70));
 
         lblQuantidade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblQuantidade.setText("Quantidade");
-        getContentPane().add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, 30));
+        getContentPane().add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 30));
 
         txtQuantidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtQuantidade.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 110, 30));
+        getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 110, 30));
 
         lblPrecoUnitario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPrecoUnitario.setText("Preço Unitário (R$)");
-        getContentPane().add(lblPrecoUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 30));
+        getContentPane().add(lblPrecoUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 30));
 
         txtPrecoUnitario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPrecoUnitario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txtPrecoUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 110, 30));
+        getContentPane().add(txtPrecoUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 110, 30));
 
         lblVatorTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblVatorTotal.setText("Valor Total (R$)");
-        getContentPane().add(lblVatorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, 30));
+        getContentPane().add(lblVatorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, 30));
 
         txtValorTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtValorTotal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txtValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 110, 30));
+        getContentPane().add(txtValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 110, 30));
+
+        JScrollPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tblVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblVenda.setModel(new javax.swing.table.DefaultTableModel(
@@ -172,15 +222,26 @@ public class frmControleVenda2 extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Produto", "Quantidade", "Preço Unitário", "Valor Total"
+                "Cliente", "Produto", "Quantidade", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblVenda.setColumnSelectionAllowed(false);
         JScrollPane2.setViewportView(tblVenda);
 
-        getContentPane().add(JScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 470, 170));
+        getContentPane().add(JScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 470, 140));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -193,12 +254,12 @@ public class frmControleVenda2 extends javax.swing.JFrame {
 
         lblPagamento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPagamento.setText("Método de Pagamento");
-        getContentPane().add(lblPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 165, 30));
+        getContentPane().add(lblPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 160, 30));
 
         boxPagamento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         boxPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "À VISTA", "À PRAZO", "CREDIÁRIO" }));
         boxPagamento.setToolTipText("");
-        getContentPane().add(boxPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 490, 250, 30));
+        getContentPane().add(boxPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 150, 30));
 
         btnFecharCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnFecharCompra.setText("Fechar compra");
@@ -207,7 +268,22 @@ public class frmControleVenda2 extends javax.swing.JFrame {
                 btnFecharCompraActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFecharCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, 36));
+        getContentPane().add(btnFecharCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 510, -1, 36));
+
+        lblVatorTotal1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblVatorTotal1.setText("Data");
+        getContentPane().add(lblVatorTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, 30));
+
+        txtDataCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        getContentPane().add(txtDataCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 110, -1));
+
+        btnAdicionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdicionar.setText("Adicionar");
+        getContentPane().add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, 36));
+
+        btnAdicionar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdicionar1.setText("Remover");
+        getContentPane().add(btnAdicionar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, -1, 36));
 
         jLogo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoVaralChic/VARALCHIC logo.png"))); // NOI18N
@@ -217,21 +293,68 @@ public class frmControleVenda2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPesquisarProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoKeyTyped
-        // Pesquisa pelo nome ou cpf
-        String sql = "SELECT * FROM cliente WHERE nome_cliente LIKE '%"
-        + txtPesquisarProduto.getText()
-        + "%' OR cpf_cliente LIKE '%"
-        + txtPesquisarProduto.getText()
-        + "%'"
-        + "ORDER BY codigo_cliente DESC";
+    private Connection conn = null;
+    
+    ////READ
+    //MÉTODO PARA POVOAR AS TABELAS Cliente e Produto
+    //BUSCANDO DO BANCO DE DADOS
+    public void povoarJTable(String sql) {
+        conn = Conexao.getConexao();
 
-        //chamando o método para povoar a tabela "tblCliente"
-        //povoarJTable(sql);
+        try {
+            PreparedStatement stmt = conn.prepareCall(sql);
+            stmt.execute();
+
+            ResultSet rs = stmt.executeQuery();
+
+            //pegando uma biblioteca que vai criar uma classe que irá povoar a tabela
+            DefaultTableModel modelCliente = (DefaultTableModel) tblCliente.getModel();
+            modelCliente.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
+            
+            DefaultTableModel modelProduto = (DefaultTableModel) tblProduto.getModel();
+            modelProduto.setNumRows(0); //ele vai iniciar do primeiro elemento da tabel (1ª coluna)
+
+            while (rs.next()) {
+                modelCliente.addRow(new Object[]{
+                    rs.getInt("codigo_cliente"),
+                    rs.getString("nome")
+                });
+            }
+            
+            while (rs.next()) {
+                modelProduto.addRow(new Object[]{
+                    rs.getInt("codigo_produto"),
+                    rs.getString("nome"),
+                    rs.getFloat("preco")
+                });
+            }
+
+            //fechar a conexão
+            Conexao.fecharConexao(conn, stmt, rs);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível obter os dados do banco. Veja: " + e);
+        }
+    }
+    private void txtPesquisarProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoKeyTyped
+        // Pesquisa pelo nome
+        String sql = "SELECT * FROM venda WHERE codigo_produto LIKE '%"
+                + txtPesquisarProduto.getText()
+                + "%'"
+                + "ORDER BY codigo_produto DESC";
+
+        //chamando o método para povoar a tabela
+        povoarJTable(sql);
     }//GEN-LAST:event_txtPesquisarProdutoKeyTyped
 
     private void txtPesquisarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarClienteKeyTyped
-        // TODO add your handling code here:
+        // Pesquisa pelo nome ou cpf
+        String sql = "SELECT * FROM venda WHERE codigo_cliente LIKE '%"
+        + txtPesquisarProduto.getText()
+        + "ORDER BY codigo_cliente DESC";
+        
+        //chamando o método para povoar a tabela
+        povoarJTable(sql);
     }//GEN-LAST:event_txtPesquisarClienteKeyTyped
 
     private void txtProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProduto2ActionPerformed
@@ -239,13 +362,28 @@ public class frmControleVenda2 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProduto2ActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    //SALVAR OS DADOS DO FORMULARIO CADASTRAR USUARIO
     private void btnFecharCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCompraActionPerformed
-        // TODO add your handling code here:
+        // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "Venda" (pacote model)
+        
     }//GEN-LAST:event_btnFecharCompraActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Carrega os dados na tabela "tblProduto" quando abrir a tela "venda"
+        // cria o SQL
+        String sql1 = "SELECT * FROM venda ORDER BY codigo_produto DESC";
+        
+        //chamando o método para povoar a tabela "tblProduto"
+        povoarJTable(sql1);
+    }//GEN-LAST:event_formWindowOpened
+
+    
     /**
      * @param args the command line arguments
      */
@@ -289,6 +427,8 @@ public class frmControleVenda2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane JScrollPane1;
     private javax.swing.JScrollPane JScrollPane2;
     private javax.swing.JComboBox<String> boxPagamento;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnAdicionar1;
     private javax.swing.JButton btnFecharCompra;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLogo;
@@ -298,10 +438,12 @@ public class frmControleVenda2 extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrecoUnitario;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblVatorTotal;
+    private javax.swing.JLabel lblVatorTotal1;
     private javax.swing.JTable tblCliente;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblVenda;
     private javax.swing.JTextField txtCodigoControleCliente;
+    private javax.swing.JFormattedTextField txtDataCompra;
     private javax.swing.JTextField txtNomeControleCliente;
     private javax.swing.JTextField txtPesquisarCliente;
     private javax.swing.JTextField txtPesquisarProduto;

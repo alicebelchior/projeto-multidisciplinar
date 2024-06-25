@@ -6,6 +6,7 @@
 package VaralChic.views;
 
 import VaralChic.conexao.Conexao;
+import VaralChic.model.Venda;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,8 +14,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -127,13 +131,11 @@ public class frmControleVenda2 extends javax.swing.JFrame {
         txtCodigoControleCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtCodigoControleCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtCodigoControleCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigoControleCliente.setEnabled(false);
         getContentPane().add(txtCodigoControleCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 40, 30));
 
         txtNomeControleCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtNomeControleCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtNomeControleCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtNomeControleCliente.setEnabled(false);
         getContentPane().add(txtNomeControleCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 230, 30));
 
         lblPesquisarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -152,13 +154,11 @@ public class frmControleVenda2 extends javax.swing.JFrame {
         txtProduto1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtProduto1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtProduto1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtProduto1.setEnabled(false);
         getContentPane().add(txtProduto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 40, 30));
 
         txtProduto2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtProduto2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtProduto2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtProduto2.setEnabled(false);
         txtProduto2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProduto2ActionPerformed(evt);
@@ -338,10 +338,10 @@ public class frmControleVenda2 extends javax.swing.JFrame {
     }
     private void txtPesquisarProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProdutoKeyTyped
         // Pesquisa pelo nome
-        String sql = "SELECT * FROM venda WHERE codigo_produto LIKE '%"
+        String sql = "SELECT * FROM produto WHERE codigo_produto LIKE '%"
                 + txtPesquisarProduto.getText()
                 + "%'"
-                + "ORDER BY codigo_produto DESC";
+                + "ORDER BY codigo_produto";
 
         //chamando o método para povoar a tabela
         povoarJTable(sql);
@@ -349,9 +349,9 @@ public class frmControleVenda2 extends javax.swing.JFrame {
 
     private void txtPesquisarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarClienteKeyTyped
         // Pesquisa pelo nome ou cpf
-        String sql = "SELECT * FROM venda WHERE codigo_cliente LIKE '%"
+        String sql = "SELECT * FROM cliente WHERE codigo_cliente LIKE '%"
         + txtPesquisarProduto.getText()
-        + "ORDER BY codigo_cliente DESC";
+        + "ORDER BY codigo_cliente";
         
         //chamando o método para povoar a tabela
         povoarJTable(sql);
@@ -371,13 +371,30 @@ public class frmControleVenda2 extends javax.swing.JFrame {
     //SALVAR OS DADOS DO FORMULARIO CADASTRAR USUARIO
     private void btnFecharCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCompraActionPerformed
         // PEGANDO OS DADOS DIGITADOS E JOGANDO PARA OS ATRIBUTOS DA CLASSE "Venda" (pacote model)
+        Venda.codigo_cliente = Integer.parseInt(txtCodigoControleCliente.getText());
+        Venda.codigo_produto = Integer.parseInt(txtProduto1.getText());
+        Venda.metodo_pagamento = boxPagamento.getSelectedItem().toString();
+        Venda.valor = Float.parseFloat(txtValorTotal.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try
+        {
+            java.util.Date date =  sdf.parse(txtDataCompra.getText());
+            java.sql.Date dataSql = new java.sql.Date(date.getTime());
+            Venda.data_venda = dataSql;
+            
+            
+        } 
+        catch (ParseException ex) 
+        {
+            Logger.getLogger(frmCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnFecharCompraActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // Carrega os dados na tabela "tblProduto" quando abrir a tela "venda"
         // cria o SQL
-        String sql1 = "SELECT * FROM venda ORDER BY codigo_produto DESC";
+        String sql1 = "SELECT * FROM produto ORDER BY codigo_produto";
         
         //chamando o método para povoar a tabela "tblProduto"
         povoarJTable(sql1);

@@ -92,7 +92,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     //CONTROLE DE VENDAS
     private void btnControleVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControleVendasActionPerformed
         // Chamando e abrindo a tela "frmControleVenda"
-        frmControleVenda venda = new frmControleVenda();
+        frmControleVenda2 venda = new frmControleVenda2();
         venda.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnControleVendasActionPerformed

@@ -70,6 +70,9 @@ public class frmTelaLogin extends javax.swing.JFrame {
         LoginConexao lg = new LoginConexao();
         lg.VerificarUsario();  //metodo de verificar o usuario
         
+        // CHAMANDO A PÁGINA PRINCIPAL
+        frmPaginaPrincipal pagPrincipal = new frmPaginaPrincipal();
+        pagPrincipal.setVisible(true);
         this.dispose();//fecha esta janela e abre o "PaginaPrincipal
     }//GEN-LAST:event_btnEntrarActionPerformed
 

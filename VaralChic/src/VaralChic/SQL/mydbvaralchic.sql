@@ -30,8 +30,8 @@ preco float(10) not null
 
 create table venda (
 codigo_venda int not null primary key auto_increment,
-codigo_cliente int not null,
-codigo_produto int not null,
+codigo_cliente int,
+codigo_produto int,
 data_venda date not null,
 valor float not null,
 metodo_pagamento varchar(100) not null,

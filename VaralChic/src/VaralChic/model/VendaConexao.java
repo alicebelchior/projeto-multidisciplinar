@@ -23,11 +23,11 @@ public class VendaConexao {
         try {
             conn = Conexao.getConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, CadastroCliente.codigo_cliente);
-            stmt.setInt(2, CadastroProduto.codigo_produto);
-            stmt.setDate(3, data_venda);
-            stmt.setFloat(4, valor);
-            stmt.setString(5, metodo_pagamento);
+            stmt.setInt(1, Venda.codigo_cliente);
+            stmt.setInt(2, Venda.codigo_produto);
+            stmt.setDate(3, Venda.data_venda);
+            stmt.setFloat(4, Venda.valor);
+            stmt.setString(5, Venda.metodo_pagamento);
 
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Venda criada com sucesso!");
@@ -45,7 +45,7 @@ public class VendaConexao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "SELECT codigo_cliente FROM cliente WHERE codigo_cliente = ?";
+        String sql = "SELECT * FROM cliente WHERE codigo_cliente = ?";
 
         try {
             conn = Conexao.getConexao();

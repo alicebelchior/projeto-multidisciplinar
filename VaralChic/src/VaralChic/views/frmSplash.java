@@ -106,11 +106,10 @@ public class frmSplash extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblImg)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(367, Short.MAX_VALUE)
-                    .addComponent(lblVersao)
-                    .addGap(5, 5, 5)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblVersao)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,15 +118,12 @@ public class frmSplash extends javax.swing.JFrame {
                 .addComponent(lblImg)
                 .addGap(59, 59, 59)
                 .addComponent(lblTitulo)
-                .addGap(58, 58, 58)
+                .addGap(18, 18, 18)
+                .addComponent(lblVersao)
+                .addGap(18, 18, 18)
                 .addComponent(lblCarregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(274, Short.MAX_VALUE)
-                    .addComponent(lblVersao)
-                    .addGap(46, 46, 46)))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
